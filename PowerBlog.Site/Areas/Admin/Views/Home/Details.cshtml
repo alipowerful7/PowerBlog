@@ -1,0 +1,54 @@
+﻿@model User
+<div class="row gx-3">
+    <div class="col-sm-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">مشاهده جزئیات</h5>
+            </div>
+            <div class="card-body">
+                <!-- Row starts -->
+                <div class="row gx-3">
+                    <div class="col-lg-3 col-sm-4 col-12">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.FirstName">نام</label>
+                            <input type="text" class="form-control" asp-for="@Model.FirstName" value="@Model.FirstName" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 col-12">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.LastName">نام خانوادگی</label>
+                            <input type="text" class="form-control" asp-for="@Model.LastName" value="@Model.LastName" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 col-12">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.Email">ایمیل</label>
+                            <input type="text" class="form-control" asp-for="@Model.Email" value="@Model.Email" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 col-12">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.Phone">شماره تلفن</label>
+                            <input type="text" class="form-control" asp-for="@Model.Phone" value="@Model.Phone" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 col-12">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.UserName">نام کاربری</label>
+                            <input type="text" class="form-control" asp-for="@Model.UserName" value="@Model.UserName" readonly>
+                        </div>
+                    </div>
+                    <div class="input-group mb-4">
+                        <img class="img-3x me-3 rounded-3" src="~/Images/UserImages/@Model.Photo" alt="@(Model.FirstName+" "+Model.LastName)" />
+                    </div>
+                </div>
+                <!-- Row ends -->
+            </div>
+            <div class="card-footer">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Edit" asp-controller="Home" asp-area="Admin" asp-route-id="@Model.Id" class="btn btn-outline-info">ویرایش</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

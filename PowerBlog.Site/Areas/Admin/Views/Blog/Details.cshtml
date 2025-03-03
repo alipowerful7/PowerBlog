@@ -1,0 +1,61 @@
+﻿@model Blog
+<div class="row gx-3">
+    <div class="col-sm-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">مشاهده جزئیات</h5>
+            </div>
+            <div class="card-body">
+                <!-- Row starts -->
+                <div class="row gx-3">
+                    <div class="col-lg-3 col-sm-4 col-12">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.Title">عنوان</label>
+                            <input type="text" class="form-control" asp-for="@Model.Title" value="@Model.Title" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 col-12">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.ShortDescription">توضیح کوتاه</label>
+                            <input type="text" class="form-control" asp-for="@Model.ShortDescription" value="@Model.ShortDescription" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 col-12">
+                        <div class="mb-3">
+                            <label asp-for="@Model.CategoryId" class="form-label">دسته بندی</label>
+                            <select asp-for="@Model.CategoryId" class="form-select" aria-label="Default select example" disabled>
+                                    <option>@ViewData["CategoryName"]</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-12">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.TextBody">متن مقاله</label>
+                            <textarea class="form-control" asp-for="@Model.TextBody" value="@Model.TextBody" readonly rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="input-group mb-4">
+                        <img class="img-3x me-3 rounded-3" src="~/Images/BlogImages/@Model.Photo" alt="@Model.Title" />
+                    </div>
+                    <div class="form-check">
+                        @if (Model.IsPublish)
+                        {
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.IsPublish" checked="checked" disabled>
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.IsPublish" disabled>
+                        }
+                        <label class="form-check-label" asp-for="@Model.IsPublish">وضعیت انتشار</label>
+                    </div>
+                </div>
+                <!-- Row ends -->
+            </div>
+            <div class="card-footer">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Edit" asp-controller="Blog" asp-area="Admin" asp-route-id="@Model.Id" class="btn btn-outline-info">ویرایش</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

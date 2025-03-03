@@ -1,0 +1,219 @@
+﻿@model PowerBlog.Site.Areas.Admin.Models.ViewModels.AdminViewModel
+@using PowerBlog.Site.Utilities
+<div class="row gx-3">
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="mb-2">
+                    <i class="bi bi-book fs-1 text-primary lh-1"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">کل مقالات</h5>
+                    <h3 class="m-0 text-primary">@Model.AllBlog</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="arrow-label">منتشر نشده: @Model.UnPublishPriceBlogs</div>
+                <div class="mb-2">
+                    <i class="bi bi-cash fs-1 text-primary lh-1"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">مقالات پولی</h5>
+                    <h3 class="m-0 text-primary">@Model.PriceBlogs</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="mb-2">
+                    <i class="bi bi-x fs-1 text-danger lh-1"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">مقالات منتشر نشده</h5>
+                    <h3 class="m-0 text-danger">@Model.UnPublishBlogs</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="mb-2">
+                    <i class="bi bi-check-circle fs-1 text-primary lh-1"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">مقالات منتشر شده</h5>
+                    <h3 class="m-0 text-primary">@Model.PublishBlogs</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gx-3">
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="mb-2">
+                    <i class="bi bi-bar-chart fs-1 text-primary lh-1"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">فروش امروز</h5>
+                    <h3 class="m-0 text-primary">@Model.TodaySell.Value.ToString("N0") تومان</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gx-3">
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="mb-2">
+                    <i class="bi bi-book fs-1 text-primary lh-1"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">کل نظرات</h5>
+                    <h3 class="m-0 text-primary">@Model.AllComment</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="mb-2">
+                    <i class="bi bi-x fs-1 text-danger lh-1"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">نظرات تایید نشده</h5>
+                    <h3 class="m-0 text-danger">@Model.UnConfirmComment</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="mb-2">
+                    <i class="bi bi-check-circle fs-1 text-primary lh-1"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">نظرات تایید شده</h5>
+                    <h3 class="m-0 text-primary">@Model.ConfirmComment</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gx-3">
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="mb-2">
+                    <i class="bi bi-person fs-1 text-primary lh-1"></i>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">کل کاربران</h5>
+                    <h3 class="m-0 text-primary">@Model.AllUser</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <h5 class="mb-3">مقاله پربازدید</h5>
+    <div class="table-outer">
+        <table class="table table-striped m-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عنوان</th>
+                    <th>توضیحات کوتاه</th>
+                    <th>تاریخ ایجاد</th>
+                    <th>نویسنده</th>
+                    <th>بازدید</th>
+                    <th>دسته بندی</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>@Model.MostViewBlog.Title</td>
+                    <td>@Model.MostViewBlog.ShortDescription</td>
+                    <td>@Model.MostViewBlog.CreateDate.Value.ToShamsi()</td>
+                    <td>@(Model.MostViewBlog.User?.FirstName+" "+ Model.MostViewBlog.User?.LastName)</td>
+                    <td>@Model.MostViewBlog.View</td>
+                    <td>@Model.MostViewBlog.Category.Name</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="table-responsive">
+    <h5 class="mb-3">گران ترین مقاله</h5>
+    <div class="table-outer">
+        <table class="table table-striped m-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عنوان</th>
+                    <th>توضیحات کوتاه</th>
+                    <th>تاریخ ایجاد</th>
+                    <th>نویسنده</th>
+                    <th>بازدید</th>
+                    <th>دسته بندی</th>
+                    <th>قیمت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>@Model.MostExpensiveBlog.Title</td>
+                    <td>@Model.MostExpensiveBlog.ShortDescription</td>
+                    <td>@Model.MostExpensiveBlog.CreateDate.Value.ToShamsi()</td>
+                    <td>@(Model.MostExpensiveBlog.User?.FirstName+" "+ Model.MostExpensiveBlog.User?.LastName)</td>
+                    <td>@Model.MostExpensiveBlog.View</td>
+                    <td>@Model.MostExpensiveBlog.Category.Name</td>
+                    <td>@Model.MostExpensiveBlog.Price?.ToString("N0")</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="table-responsive">
+    <h5 class="mb-3">ارزان ترین مقاله</h5>
+    <div class="table-outer">
+        <table class="table table-striped m-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عنوان</th>
+                    <th>توضیحات کوتاه</th>
+                    <th>تاریخ ایجاد</th>
+                    <th>نویسنده</th>
+                    <th>بازدید</th>
+                    <th>دسته بندی</th>
+                    <th>قیمت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>@Model.CheapestBlog.Title</td>
+                    <td>@Model.CheapestBlog.ShortDescription</td>
+                    <td>@Model.CheapestBlog.CreateDate.Value.ToShamsi()</td>
+                    <td>@(Model.CheapestBlog.User?.FirstName+" "+ Model.CheapestBlog.User?.LastName)</td>
+                    <td>@Model.CheapestBlog.View</td>
+                    <td>@Model.CheapestBlog.Category.Name</td>
+                    <td>@Model.CheapestBlog.Price?.ToString("N0")</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

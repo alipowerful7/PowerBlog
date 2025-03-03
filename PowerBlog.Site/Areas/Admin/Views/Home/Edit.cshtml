@@ -1,0 +1,41 @@
+﻿@model User
+<div class="row gx-3">
+    <div class="col-sm-12">
+        <form enctype="multipart/form-data" method="post" asp-action="PostEdit" asp-controller="UserPanel" asp-area="">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title">مشاهده جزئیات</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Row starts -->
+                    <div class="row gx-3">
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.FirstName">نام</label>
+                                <input type="text" class="form-control" asp-for="@Model.FirstName" value="@Model.FirstName">
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.LastName">نام خانوادگی</label>
+                                <input type="text" class="form-control" asp-for="@Model.LastName" value="@Model.LastName">
+                            </div>
+                        </div>
+                        <div class="input-group mb-4">
+                            <img class="img-3x me-3 rounded-3" src="~/Images/UserImages/@Model.Photo" alt="@Model.UserName" />
+                            <label class="input-group-text" for="ImageFile">بارگذاری عکس</label>
+                            <input accept=".jpg,.png,.jpeg" type="file" class="form-control" id="ImageFile" name="ImageFile">
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+                    <!-- Row ends -->
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <button type="submit" class="btn btn-outline-info">ویرایش</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

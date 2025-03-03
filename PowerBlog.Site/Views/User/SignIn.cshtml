@@ -1,0 +1,117 @@
+﻿@*@model User*@
+@{
+    Layout = null;
+}
+<style>
+    * {
+        font-family: DanaFaNum;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard Templates - One Admin Template</title>
+
+    <!-- Meta -->
+    <meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
+    <meta name="author" content="Bootstrap Gallery" />
+    <link rel="canonical" href="https://www.bootstrap.gallery/">
+    <meta property="og:url" content="https://www.bootstrap.gallery/">
+    <meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+    <meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+    <meta property="og:type" content="Website">
+    <meta property="og:site_name" content="Bootstrap Gallery">
+    <link rel="shortcut icon" href="~/AdminTemplate/assets/images/favicon.svg" />
+
+    <!-- *************
+            ************ CSS Files *************
+        ************* -->
+    <link rel="stylesheet" href="~/AdminTemplate/assets/fonts/bootstrap/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/AdminTemplate/assets/css/main.min.css" />
+
+</head>
+
+<body>
+
+    <!-- Page wrapper starts -->
+    <div class="page-wrapper">
+
+        <!-- Auth container starts -->
+        <div class="auth-container">
+
+            <div class="d-flex justify-content-center">
+
+                <!-- Form starts -->
+                <form method="post" asp-action="PostSignIn" asp-controller="User">
+
+                    <!-- Logo starts -->
+                    <a class="auth-logo mt-5 mb-3">
+                        <img src="~/AdminTemplate/assets/images/logo.svg" alt="Bootstrap Gallery" />
+                    </a>
+                    <!-- Logo ends -->
+                    <!-- Authbox starts -->
+                    <div class="auth-box">
+
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="mb-3">
+                                <label class="form-label">@TempData["ErrorMessage"]</label>
+                            </div>
+                            TempData.Remove("ErrorMessage");
+                        }
+
+                        <h4 class="mb-4">ورود</h4>
+
+
+                        <div class="mb-3">
+                            <label class="form-label" for="UserName">نام کاربری<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <input required type="text" name="UserName" id="UserName" class="form-control" placeholder="نام کاربری خود را وارد نمائید">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="Password">رمز عبور<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                                <input required type="password" name="Password" id="Password" class="form-control" placeholder="رمز عبور خود را وارد نمائید">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">ورود</button>
+                            <a asp-action="SignInWithEmail" asp-controller="User" asp-area="" class="btn btn-outline-secondary">ورود با ایمیل</a>
+                            <a asp-action="ForgetPassword" asp-controller="User" asp-area="" class="btn btn-outline-secondary">فراموشی رمز عبور</a>
+                            <a class="btn btn-outline-secondary" asp-action="SignUp" asp-controller="User" asp-area="">حساب کاربری ندارید؟ ثبت نام</a>
+                        </div>
+
+                    </div>
+                    <!-- Authbox ends -->
+
+                </form>
+                <!-- Form ends -->
+
+            </div>
+
+        </div>
+        <!-- Auth container ends -->
+
+    </div>
+    <!-- Page wrapper ends -->
+
+</body>
+
+
+<!-- Mirrored from kodingwife.com/demos/templatemonster/one/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 May 2024 10:00:23 GMT -->
+<!-- Mirrored from onepanel.liara.run/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2024 13:04:34 GMT -->
+</html>

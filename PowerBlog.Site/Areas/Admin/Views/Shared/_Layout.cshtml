@@ -1,0 +1,677 @@
+﻿@using PowerBlog.Site.Models
+@using Microsoft.AspNetCore.Http
+@inject PowerBlog.Site.Data.ApplicationDbContext dbContext
+@{
+    var session = Context.Session;
+    string? userFullName = null;
+    var userId = long.Parse(session?.GetString("UserId")!);
+    var user = dbContext.Users.FirstOrDefault(u => u.Id == userId);
+    if (user != null)
+    {
+        userFullName = user.FirstName + " " + user.LastName;
+    }
+}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<!-- Mirrored from kodingwife.com/demos/templatemonster/one/default.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 May 2024 09:59:11 GMT -->
+<!-- Mirrored from onepanel.liara.run/default.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2024 13:04:09 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard Templates - One Admin Template</title>
+
+    <!-- Meta -->
+    <meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
+    <meta name="author" content="Bootstrap Gallery" />
+    <link rel="canonical" href="https://www.bootstrap.gallery/">
+    <meta property="og:url" content="https://www.bootstrap.gallery/">
+    <meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+    <meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+    <meta property="og:type" content="Website">
+    <meta property="og:site_name" content="Bootstrap Gallery">
+    <link rel="shortcut icon" href="~/AdminTemplate/assets/images/favicon.svg" />
+
+    <!-- *************
+            ************ CSS Files *************
+        ************* -->
+    <link rel="stylesheet" href="~/AdminTemplate/assets/fonts/bootstrap/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/AdminTemplate/assets/css/main.min.css" />
+
+    <!-- *************
+            ************ Vendor Css Files *************
+        ************ -->
+    <!-- Scrollbar CSS -->
+    <link rel="stylesheet" href="~/AdminTemplate/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
+    <style>
+        * {
+            font-family: DanaFaNum;
+            font-weight: 600;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Page wrapper start -->
+    <div class="page-wrapper">
+
+        <!-- Main container start -->
+        <div class="main-container">
+
+            <!-- Sidebar wrapper start -->
+            <nav id="sidebar" class="sidebar-wrapper">
+
+                <!-- App brand starts -->
+                <div class="app-brand px-3 py-2 d-flex align-items-center">
+                    <a asp-action="Index" asp-controller="Home" asp-area="Admin">
+                        <img src="~/AdminTemplate/assets/images/logo.svg" class="logo" alt="Bootstrap Gallery" />
+                    </a>
+                </div>
+                <!-- App brand ends -->
+                <!-- Sidebar profile starts -->
+                <div class="sidebar-profile">
+                    <img src="~/Images/UserImages/@user?.Photo" class="img-3x me-3 rounded-3" alt="@(user?.FirstName+" "+user?.LastName)" />
+                    <div class="m-0 text-nowrap">
+                        <p class="m-0">سلام &#128075;</p>
+                        <h6 class="m-0">@userFullName</h6>
+                    </div>
+                </div>
+                <!-- Sidebar profile ends -->
+                <!-- Sidebar menu starts -->
+                <div class="sidebarMenuScroll">
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a asp-action="Index" asp-controller="Home" asp-area="Admin">
+                                <i class="bi bi-pie-chart"></i>
+                                <span class="menu-text">داشبورد</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="Details" asp-controller="Home" asp-area="Admin">
+                                <i class="bi bi-infinity"></i>
+                                <span class="menu-text">اطلاعات من</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#!">
+                                <i class="bi bi-book"></i>
+                                <span class="menu-text">مقالات</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Blog" asp-area="Admin">مشاهده همه مقالات</a>
+                                </li>
+                                <li>
+                                    <a asp-action="Creat" asp-controller="Blog" asp-area="Admin">ثبت مقاله جدید</a>
+                                </li>
+                                <li>
+                                    <a asp-action="PriceBlog" asp-controller="Blog" asp-area="Admin">ثبت مقاله پولی</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#!">
+                                <i class="bi bi-stickies"></i>
+                                <span class="menu-text">دسته بندی ها</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Category" asp-area="Admin">مشاهده همه دسته بندی ها</a>
+                                </li>
+                                <li>
+                                    <a asp-action="Creat" asp-controller="Category" asp-area="Admin">ثبت دسته بندی جدید</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#!">
+                                <i class="bi bi-person"></i>
+                                <span class="menu-text">کاربران</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a asp-action="Index" asp-controller="UserManager" asp-area="Admin">مشاهده همه کاربران</a>
+                                </li>
+                                <li>
+                                    <a asp-action="Creat" asp-controller="UserManager" asp-area="Admin">ثبت کاربر جدید</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#!">
+                                <i class="bi bi-balloon"></i>
+                                <span class="menu-text">نظرات</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Comment" asp-area="Admin">مشاهده همه نظرات</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-action="Index" asp-controller="Home" asp-area="">
+                                <i class="bi bi-infinity"></i>
+                                <span class="menu-text">سایت</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="ChangePassword" asp-controller="Home" asp-area="Admin">
+                                <i class="bi bi-pass"></i>
+                                <span class="menu-text">تغییر رمز عبور</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="Logout" asp-controller="User" asp-area="">
+                                <i class="bi bi-door-open"></i>
+                                <span class="menu-text">خروج</span>
+                            </a>
+                        </li>
+                        @*<li>
+                                <a href="index-2.html">
+                                    <i class="bi bi-pie-chart"></i>
+                                    <span class="menu-text">داشبورد</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="analytics.html">
+                                    <i class="bi bi-bar-chart-line"></i>
+                                    <span class="menu-text">تجزیه و تحلیل</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="widgets.html">
+                                    <i class="bi bi-box"></i>
+                                    <span class="menu-text">ویجت ها</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="calendar.html">
+                                    <i class="bi bi-calendar2"></i>
+                                    <span class="menu-text">تقویم</span>
+                                </a>
+                            </li>
+                            <li class="active current-page">
+                                <a href="default.html">
+                                    <i class="bi bi-layout-sidebar"></i>
+                                    <span class="menu-text"> طرح بندی پیش فرض</span>
+                                </a>
+                            </li>
+                            <li class="treeview">
+                                <a href="#!">
+                                    <i class="bi bi-stickies"></i>
+                                    <span class="menu-text"> کامپوننت ها</span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="accordions.html">آکاردئون</a>
+                                    </li>
+                                    <li>
+                                        <a href="alerts.html">هشدارها</a>
+                                    </li>
+                                    <li>
+                                        <a href="buttons.html">دکمه ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="badges.html">نشان ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="carousel.html">اسلایدر</a>
+                                    </li>
+                                    <li>
+                                        <a href="list-items.html">لیست ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="progress.html">لودینگ ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="popovers.html">دیالوگ پاپ اور</a>
+                                    </li>
+                                    <li>
+                                        <a href="tooltips.html">متن راهنما</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#!">
+                                    <i class="bi bi-ui-checks-grid"></i>
+                                    <span class="menu-text">فرم ها</span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="form-inputs.html">اینپوت ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="form-checkbox-radio.html">چک باکس و رادیو باتن</a>
+                                    </li>
+                                    <li>
+                                        <a href="form-file-input.html">ورودی فایل</a>
+                                    </li>
+                                    <li>
+                                        <a href="form-validations.html"> اعتبار سنجی</a>
+                                    </li>
+                                    <li>
+                                        <a href="date-time-pickers.html">انتخاب تاریخ و زمان</a>
+                                    </li>
+                                    <li>
+                                        <a href="form-layouts.html"> طرح‌بندی فرم</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#!">
+                                    <i class="bi bi-window-sidebar"></i>
+                                    <span class="menu-text">فاکتور</span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="create-invoice.html">ایجاد فاکتور</a>
+                                    </li>
+                                    <li>
+                                        <a href="view-invoice.html">نمایش فاکتور</a>
+                                    </li>
+                                    <li>
+                                        <a href="invoice-list.html">لیست فاکتور</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="tables.html">
+                                    <i class="bi bi-border-all"></i>
+                                    <span class="menu-text">جدول ها</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="subscribers.html">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span class="menu-text"> دنبال کنندگان</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="contacts.html">
+                                    <i class="bi bi-wallet2"></i>
+                                    <span class="menu-text"> مخاطبان</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="settings.html">
+                                    <i class="bi bi-gear"></i>
+                                    <span class="menu-text"> تنظیمات</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="profile.html">
+                                    <i class="bi bi-person-square"></i>
+                                    <span class="menu-text"> پروفایل</span>
+                                </a>
+                            </li>
+                            <li class="treeview">
+                                <a href="#!">
+                                    <i class="bi bi-code-square"></i>
+                                    <span class="menu-text">کارت ها</span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="cards.html">کارت ها</a>
+                                    </li>
+                                    <li>
+                                        <a href="advanced-cards.html">کارت های پیشرفته</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#!">
+                                    <i class="bi bi-pie-chart"></i>
+                                    <span class="menu-text"> نمودارها</span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="apex.html"> نمودارهای راس</a>
+                                    </li>
+                                    <li>
+                                        <a href="morris.html"> نمودارهای موریس</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="maps.html">
+                                    <i class="bi bi-pin-map"></i>
+                                    <span class="menu-text"> نقشه</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tabs.html">
+                                    <i class="bi bi-slash-square"></i>
+                                    <span class="menu-text"> تب بار</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="modals.html">
+                                    <i class="bi bi-terminal"></i>
+                                    <span class="menu-text">مُدال</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="icons.html">
+                                    <i class="bi bi-textarea"></i>
+                                    <span class="menu-text">آیکون ها</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="typography.html">
+                                    <i class="bi bi-explicit"></i>
+                                    <span class="menu-text">تایپوگرافی</span>
+                                </a>
+                            </li>
+                            <li class="treeview">
+                                <a href="#!">
+                                    <i class="bi bi-upc-scan"></i>
+                                    <span class="menu-text">ورود / ثبت نام</span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="login.html">ورود</a>
+                                    </li>
+                                    <li>
+                                        <a href="signup.html">ثبت نام</a>
+                                    </li>
+                                    <li>
+                                        <a href="forgot-password.html">فراموشی رمز عبور</a>
+                                    </li>
+                                    <li>
+                                        <a href="reset-password.html">ریست کردن رمز عبور</a>
+                                    </li>
+                                    <li>
+                                        <a href="lock-screen.html">قفل صفحه</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="page-not-found.html">
+                                    <i class="bi bi-exclamation-diamond"></i>
+                                    <span class="menu-text">صفحه در دسترس نیست</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="maintenance.html">
+                                    <i class="bi bi-exclamation-octagon"></i>
+                                    <span class="menu-text">صفحه در دست تعمیر</span>
+                                </a>
+                            </li>
+                            <li class="treeview">
+                                <a href="#!">
+                                    <i class="bi bi-code-square"></i>
+                                    <span class="menu-text">منوی تودرتو</span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="#!">1 منوی </a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">
+                                            2 منوی <i class="bi bi-caret-left-fill"></i>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                            <li>
+                                                <a href="#!">2.1 منوی </a>
+                                            </li>
+                                            <li>
+                                                <a href="#!">
+                                                    2.2 منوی <i class="bi bi-caret-left-fill"></i>
+                                                </a>
+                                                <ul class="treeview-menu">
+                                                    <li>
+                                                        <a href="#!">2.2.1 منوی </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#!">2.2.2 منوی </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>*@
+                    </ul>
+                </div>
+                <!-- Sidebar menu ends -->
+
+            </nav>
+            <!-- Sidebar wrapper end -->
+            <!-- App container starts -->
+            <div class="app-container">
+
+                <!-- App header starts -->
+                <div class="app-header">
+
+                    @*Toggle buttons start*@
+                    <div class="d-flex">
+                        <button class="btn btn-outline-info btn-sm me-3 toggle-sidebar" id="toggle-sidebar">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <button class="btn btn-outline-info btn-sm me-3 pin-sidebar" id="pin-sidebar">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                    </div>
+                    @*Toggle buttons end
+                        App brand start*@
+                    <div class="app-brand-sm">
+                        <a href="index-2.html" class="d-lg-none d-md-block">
+                            <img src="~/AdminTemplate/assets/images/logo-sm.svg" class="logo" alt="Bootstrap Gallery">
+                        </a>
+                    </div>
+                    @*App brand end
+                        App header actions start*@
+                    @*<div class="header-actions">
+                            <div class="dropdown d-sm-block d-none">
+                                <a class="dropdown-toggle d-flex p-3 position-relative" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-grid fs-4"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-start">
+                                    Row start
+                                    <div class="d-flex gap-2 m-2">
+                                        <a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+                                            <img src="~/AdminTemplate/assets/images/brand-behance.svg" class="img-2x" alt="Admin Themes" />
+                                        </a>
+                                        <a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+                                            <img src="~/AdminTemplate/assets/images/brand-gatsby.svg" class="img-2x" alt="Admin Themes" />
+                                        </a>
+                                        <a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+                                            <img src="~/AdminTemplate/assets/images/brand-google.svg" class="img-2x" alt="Admin Themes" />
+                                        </a>
+                                        <a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+                                            <img src="~/AdminTemplate/assets/images/brand-bitcoin.svg" class="img-2x" alt="Admin Themes" />
+                                        </a>
+                                        <a href="javascript:void(0)" class="g-col-4 p-2 border rounded-2">
+                                            <img src="~/AdminTemplate/assets/images/brand-dribbble.svg" class="img-2x" alt="Admin Themes" />
+                                        </a>
+                                    </div>
+                                    Row end
+                                </div>
+                            </div>
+                            <div class="dropdown d-sm-block d-none">
+                                <a class="dropdown-toggle d-flex p-3 position-relative" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-handbag fs-4"></i>
+                                    <span class="count-label info"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-start dropdown-menu-md">
+                                    <div class="dropdown-item">
+                                        <div class="p-3 border rounded-2">
+                                            <h3 class="mb-1">350,000 تومان</h3>
+                                            <div class="mb-1 d-flex justify-content-between">
+                                                <span>درآمد</span>
+                                                <span class="text-primary">+2%</span>
+                                            </div>
+                                            <div class="progress small">
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <div class="p-3 border rounded-2">
+                                            <h3 class="mb-1">480,000 تومان</h3>
+                                            <div class="mb-1 d-flex justify-content-between">
+                                                <span>سود ناخالص</span>
+                                                <span class="text-primary">+7%</span>
+                                            </div>
+                                            <div class="progress small">
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <div class="p-3 border rounded-2">
+                                            <h3 class="mb-1">2800 سفارش</h3>
+                                            <div class="mb-1 d-flex justify-content-between">
+                                                <span>فروش</span>
+                                                <span class="text-danger">+3%</span>
+                                            </div>
+                                            <div class="progress small">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid mx-3 my-3">
+                                        <a href="javascript:void(0)" class="btn btn-primary">نمایش همه</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle d-flex p-3 position-relative" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-exclamation-triangle fs-4"></i>
+                                    <span class="count-label"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-start dropdown-menu-md">
+                                    <div class="dropdown-item">
+                                        <div class="d-flex py-2 border-bottom">
+                                            <img src="~/AdminTemplate/assets/images/user.png" class="img-3x me-3 rounded-3" alt="Admin Theme" />
+                                            <div class="m-0">
+                                                <h6 class="mb-1 fw-semibold">تارا مظلومی</h6>
+                                                <p class="mb-1">عضویت به پایان رسیده است.</p>
+                                                <p class="small m-0">امروز، 7:30 بعدازظهر</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <div class="d-flex py-2 border-bottom">
+                                            <img src="~/AdminTemplate/assets/images/user2.png" class="img-3x me-3 rounded-3" alt="Admin Theme" />
+                                            <div class="m-0">
+                                                <h6 class="mb-1 fw-semibold">علی نوری</h6>
+                                                <p class="mb-1">تبریک، برای شغل جدید.</p>
+                                                <p class="small m-0">امروز، 09:00 قبل ازظهر</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <div class="d-flex py-2">
+                                            <img src="~/AdminTemplate/assets/images/user1.png" class="img-3x me-3 rounded-3" alt="Admin Theme" />
+                                            <div class="m-0">
+                                                <h6 class="mb-1 fw-semibold">میلاد طباطبایی</h6>
+                                                <p class="mb-1"> احمد نسخه جدید برنامه را اضافه کرد.</p>
+                                                <p class="small m-0">امروز، 08:00 قبل ازظهر</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid mx-3 my-1">
+                                        <a href="javascript:void(0)" class="btn btn-primary">نمایش همه</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown ms-2">
+                                <a id="userSettings" class="dropdown-toggle d-flex py-2 align-items-center text-decoration-none" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="icon-box md bg-info text-white rounded-5">ر ا</div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-start">
+                                    <a class="dropdown-item d-flex align-items-center" href="profile.html">
+                                        <i class="bi bi-person fs-4 me-2"></i> پروفایل
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="settings.html">
+                                        <i class="bi bi-gear fs-4 me-2"></i> تنظیمات
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="login.html">
+                                        <i class="bi bi-escape fs-4 me-2"></i>خروج
+                                    </a>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*App header actions end*@
+
+                </div>
+                <!-- App header ends -->
+                <!-- App hero header starts -->
+                <br />
+                <!--<div class="app-hero-header d-flex align-items-start">-->
+                <!-- Breadcrumb start -->
+                <!--<ol class="breadcrumb d-none d-lg-flex">
+                    <li class="breadcrumb-item">
+                        <i class="bi bi-house lh-1"></i>
+                        <a href="index-2.html" class="text-decoration-none">خانه</a>
+                    </li>
+                    <li class="breadcrumb-item" aria-current="page">صفحه پیش فرض</li>
+                </ol>-->
+                <!-- Breadcrumb end -->
+                <!-- Filter start -->
+                <!--<div class="ms-auto d-flex flex-row gap-1 day-filters">
+                    <button class="btn btn-sm">امروز</button>
+                    <button class="btn btn-sm">6 روزه</button>
+                    <button class="btn btn-sm">2 هفته</button>
+                    <button class="btn btn-sm">1 ماهه</button>
+                    <button class="btn btn-sm">3 ماهه</button>
+                    <button class="btn btn-sm">6 ماهه</button>
+                    <button class="btn btn-sm btn-info">1 ساله</button>
+                </div>-->
+                <!-- Filter end -->
+                <!--</div>-->
+                <!-- App Hero header ends -->
+                <!-- App body starts -->
+                <div class="app-body">
+
+                    <!-- Row start -->
+                    <div class="row gx-3">
+                        <div class="col-xxl-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    @RenderBody()
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row end -->
+
+                </div>
+                <!-- App body ends -->
+                <!-- App footer start -->
+                <div class="app-footer">
+                    <span>علی خسروجردی</span>
+                </div>
+                <!-- App footer end -->
+
+            </div>
+            <!-- App container ends -->
+
+        </div>
+        <!-- Main container end -->
+
+    </div>
+    <!-- Page wrapper end -->
+    <!-- *************
+            ************ JavaScript Files *************
+        ************* -->
+    <!-- Required jQuery first, then Bootstrap Bundle JS -->
+    <script src="~/AdminTemplate/assets/js/jquery.min.js"></script>
+    <script src="~/AdminTemplate/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- *************
+            ************ Vendor Js Files *************
+        ************* -->
+    <!-- Overlay Scroll JS -->
+    <script src="~/AdminTemplate/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+    <script src="~/AdminTemplate/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
+
+    <!-- Custom JS files -->
+    <script src="~/AdminTemplate/assets/js/custom.js"></script>
+</body>
+
+
+<!-- Mirrored from kodingwife.com/demos/templatemonster/one/default.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 May 2024 09:59:11 GMT -->
+<!-- Mirrored from onepanel.liara.run/default.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2024 13:04:09 GMT -->
+</html>

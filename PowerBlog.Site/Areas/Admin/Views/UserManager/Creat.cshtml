@@ -1,0 +1,76 @@
+﻿@model User
+<div class="row gx-3">
+    <div class="col-sm-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">ثبت کاربر جدید</h5>
+            </div>
+            <form method="post" enctype="multipart/form-data" asp-action="PostCreat" asp-controller="UserManager" asp-area="Admin">
+                <div class="card-body">
+                    <!-- Row starts -->
+                    <div class="row gx-3">
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.FirstName">نام</label>
+                                <input type="text" class="form-control" asp-for="@Model.FirstName" placeholder="نام کاربر را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.LastName">نام خانوادگی</label>
+                                <input type="text" class="form-control" asp-for="@Model.LastName" placeholder="نام خانوادگی کاربر را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.Email">ایمیل</label>
+                                <input type="email" class="form-control" asp-for="@Model.Email" placeholder="ایمیل کاربر را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.Phone">شماره تلفن</label>
+                                <input type="text" class="form-control" asp-for="@Model.Phone" placeholder="شماره تلفن کاربر را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.UserName">نام کاربری</label>
+                                <input type="text" class="form-control" asp-for="@Model.UserName" placeholder="نام کاربری کاربر را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.Password">رمز عبور</label>
+                                <input type="text" class="form-control" asp-for="@Model.Password" placeholder="رمز عبور کاربر را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label asp-for="@Model.UserRole" class="form-label">نقش کاربر را انتخاب کنید</label>
+                                <select asp-for="@Model.UserRole" class="form-select" aria-label="Default select example">
+                                    <option selected disabled>این منوی انتخابی را باز کنید</option>
+                                    @foreach (var item in Enum.GetValues(typeof(UserRole)))
+                                    {
+                                        <option value="@((int)item)">@item</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group mb-4">
+                            <label class="input-group-text" for="ImageFile">بارگذاری عکس کاربر</label>
+                            <input accept=".jpg,.png,.jpeg" type="file" class="form-control" id="ImageFile" name="ImageFile">
+                        </div>
+                    </div>
+                    <!-- Row ends -->
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <button type="reset" class="btn btn-outline-secondary">پاک کردن همه</button>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

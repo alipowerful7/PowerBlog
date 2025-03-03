@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Blog>
+@{
+    Layout = "_UserPanelLayout";
+}
+@{
+    int counter = 1;
+}
+<div class="table-responsive">
+    <div class="table-outer">
+        <table class="table table-striped m-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عنوان مقاله</th>
+                    <th>نویسنده</th>
+                    <th>دسته بندی</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.Title</td>
+                        <td>@(item?.User?.FirstName+" "+item?.User?.LastName)</td>
+                        <td>@item?.Category?.Name</td>
+                        <td>
+                            <a asp-action="Details" asp-controller="Blog" asp-area="" asp-route-id="@item?.Id" class="btn btn-outline-info">مشاهده</a>
+                        </td>
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+﻿@model PowerBlog.Site.Areas.Admin.Models.ViewModels.BlogViewModel
+@using PowerBlog.Site.Models
+@using Microsoft.AspNetCore.Http
+@inject PowerBlog.Site.Data.ApplicationDbContext dbContext
+@{
+    var session = Context.Session;
+    var userId = long.Parse(session?.GetString("UserId")!);
+}
+<div class="row gx-3">
+    <div class="col-sm-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">ثبت مقاله جدید</h5>
+            </div>
+            <form method="post" enctype="multipart/form-data" asp-action="PostCreat" asp-controller="Blog" asp-area="Admin">
+                <div class="card-body">
+                    <!-- Row starts -->
+                    <div class="row gx-3">
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.Blog.Title">عنوان</label>
+                                <input type="text" class="form-control" asp-for="@Model.Blog.Title" placeholder="عنوان مقاله را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.Blog.ShortDescription">توضیح کوتاه</label>
+                                <input type="text" class="form-control" asp-for="@Model.Blog.ShortDescription" placeholder="توضیح کوتاه را وارد کنید" required>
+                            </div>
+                        </div>
+                        @*class="card-body"
+                            class="m-0"*@
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label asp-for="@Model.Blog.CategoryId" class="form-label">دسته بندی را انتخاب کنید</label>
+                                <select asp-for="@Model.Blog.CategoryId" class="form-select" aria-label="Default select example" required="required">
+                                    <option selected disabled>این منوی انتخابی را باز کنید</option>
+                                    @foreach (var item in Model.Categories)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label asp-for="@Model.Blog.UserId" class="form-label">نویسنده را انتخاب کنید</label>
+                                <select asp-for="@Model.Blog.UserId" class="form-select" aria-label="Default select example" required="required">
+                                    @foreach (var item in Model.Authors)
+                                    {
+                                        if (item.Id == userId)
+                                        {
+                                            <option selected value="@item.Id">@(item.FirstName+" "+item.LastName)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@(item.FirstName+" "+item.LastName)</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.Blog.TextBody">متن مقاله</label>
+                                <textarea class="form-control" asp-for="@Model.Blog.TextBody" placeholder="متن مقاله را وارد کنید" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        <div class="input-group mb-4">
+                            <label class="input-group-text" for="ImageFile">بارگذاری عکس مقاله</label>
+                            <input accept=".jpg,.png,.jpeg" type="file" class="form-control" id="ImageFile" name="ImageFile">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.Blog.IsPublish">
+                            <label class="form-check-label" asp-for="@Model.Blog.IsPublish">منتشر کردن مقاله</label>
+                        </div>
+                    </div>
+                    <!-- Row ends -->
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <button type="reset" class="btn btn-outline-secondary">پاک کردن همه</button>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<User>
+@{
+    int counter = 1;
+}
+<div class="table-responsive">
+    <div class="table-outer">
+        <table class="table table-striped m-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>نام</th>
+                    <th>نام خانوادگی</th>
+                    <th>شماره تلفن</th>
+                    <th>نقش</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Phone</td>
+                        <td>@item.UserRole</td>
+                        <td>
+                            <a asp-action="Details" asp-controller="UserManager" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-info">جزئیات</a> <a asp-action="Edit" asp-controller="UserManager" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-warning">ویرایش</a> <a asp-action="Delete" asp-controller="UserManager" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-danger">حذف</a>
+                        </td>
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+﻿@{
+    Layout = null;
+}
+<style>
+    * {
+        font-family: DanaFaNum;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard Templates - One Admin Template</title>
+
+    <!-- Meta -->
+    <meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
+    <meta name="author" content="Bootstrap Gallery" />
+    <link rel="canonical" href="https://www.bootstrap.gallery/">
+    <meta property="og:url" content="https://www.bootstrap.gallery/">
+    <meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+    <meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+    <meta property="og:type" content="Website">
+    <meta property="og:site_name" content="Bootstrap Gallery">
+    <link rel="shortcut icon" href="~/AdminTemplate/assets/images/favicon.svg" />
+
+    <!-- *************
+            ************ CSS Files *************
+        ************* -->
+    <link rel="stylesheet" href="~/AdminTemplate/assets/fonts/bootstrap/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/AdminTemplate/assets/css/main.min.css" />
+
+</head>
+
+<body>
+
+    <!-- Page wrapper starts -->
+    <div class="page-wrapper">
+
+        <!-- Auth container starts -->
+        <div class="auth-container">
+
+            <div class="d-flex justify-content-center">
+
+                <!-- Form starts -->
+                <form method="post" asp-action="PostSignInWithEmailCode" asp-controller="User" asp-area="">
+
+                    <!-- Logo starts -->
+                    <a asp-action="Index" asp-controller="Home" asp-area="" class="auth-logo mt-5 mb-3">
+                        <img src="~/AdminTemplate/assets/images/logo.svg" alt="Bootstrap Gallery" />
+                    </a>
+                    <!-- Logo ends -->
+                    <!-- Authbox starts -->
+                    <div class="auth-box">
+
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="mb-3">
+                                <label class="form-label">@TempData["ErrorMessage"]</label>
+                            </div>
+                            TempData.Remove("ErrorMessage");
+                        }
+
+                        <h4 class="mb-4">وارد کردن کد تایید</h4>
+
+                        <h6 class="fw-light mb-4">کدی که به ایمیل شما ارسال شده را در کادر زیر وارد کنید.</h6>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="email">کد تایید <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                                <input required type="text" id="emailCode" name="emailCode" class="form-control" placeholder="کد تایید خود را وارد نمائید">
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">تائید</button>
+                        </div>
+
+                    </div>
+                    <!-- Authbox ends -->
+
+                </form>
+                <!-- Form ends -->
+
+            </div>
+
+        </div>
+        <!-- Auth container ends -->
+
+    </div>
+    <!-- Page wrapper ends -->
+
+</body>
+
+
+<!-- Mirrored from kodingwife.com/demos/templatemonster/one/forgot-password.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 May 2024 10:00:23 GMT -->
+<!-- Mirrored from onepanel.liara.run/forgot-password.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2024 13:04:34 GMT -->
+</html>

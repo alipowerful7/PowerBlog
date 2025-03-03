@@ -1,0 +1,30 @@
+﻿@model Category
+<div class="row gx-3">
+    <div class="col-sm-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">مشاهده جزئیات</h5>
+            </div>
+            <div class="card-body">
+                <!-- Row starts -->
+                <div class="row gx-3">
+                    <div class="col-lg-3 col-sm-4 col-12">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.Name">عنوان</label>
+                            <input type="text" class="form-control" asp-for="@Model.Name" value="@Model.Name" readonly>
+                        </div>
+                    </div>
+                    <div class="input-group mb-4">
+                        <img class="img-3x me-3 rounded-3" src="~/Images/CategoryImages/@Model.Photo" alt="@Model.Name" />
+                    </div>
+                </div>
+                <!-- Row ends -->
+            </div>
+            <div class="card-footer">
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Edit" asp-controller="Blog" asp-area="Admin" asp-route-id="@Model.Id" class="btn btn-outline-info">ویرایش</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

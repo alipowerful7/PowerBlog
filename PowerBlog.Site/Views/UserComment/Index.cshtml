@@ -1,0 +1,38 @@
+﻿@using PowerBlog.Site.Utilities
+@model IEnumerable<Comment>
+@{
+    Layout = "_UserPanelLayout";
+    int counter = 1;
+}
+<div class="table-responsive">
+    <div class="table-outer">
+        <table class="table table-striped m-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عنوان</th>
+                    <th>مقاله</th>
+                    <th>تاریخ ایجاد</th>
+                    <th>وضعیت تایید</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.Title</td>
+                        <td>@item.Blog.Title</td>
+                        <td>@item.CreateDate.Value.ToShamsi()</td>
+                        <td>@(item.IsConfirmation?"تایید شده":"تایید نشده")</td>
+                        <td>
+                            <a asp-action="Details" asp-controller="UserComment" asp-area="" asp-route-id="@item.Id" class="btn btn-outline-info">جزئیات</a> <a asp-action="Delete" asp-controller="UserComment" asp-area="" asp-route-id="@item.Id" class="btn btn-outline-danger">حذف</a>
+                        </td>
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

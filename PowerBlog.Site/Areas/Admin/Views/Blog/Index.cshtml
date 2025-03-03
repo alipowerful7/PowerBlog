@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Blog>
+@using PowerBlog.Site.Utilities
+@{
+    int counter = 1;
+}
+<div class="table-responsive">
+    <div class="table-outer">
+        <table class="table table-striped m-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عنوان</th>
+                    <th>توضیحات کوتاه</th>
+                    <th>تاریخ ایجاد</th>
+                    <th>وضعیت انتشار</th>
+                    <th>نویسنده</th>
+                    <th>بازدید</th>
+                    <th>دسته بندی</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td>@item.Title</td>
+                        <td>@item.ShortDescription</td>
+                        <td>@item.CreateDate.Value.ToShamsi()</td>
+                        <td>@(item.IsPublish?"منتشر شده":"منتشر نشده")</td>
+                        <td>@(item.User?.FirstName+" "+item.User?.LastName)</td>
+                        <td>@item.View</td>
+                        <td>@item.Category.Name</td>
+                        <td>
+                            <a asp-action="Details" asp-controller="Blog" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-info">جزئیات</a> <a asp-action="Edit" asp-controller="Blog" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-warning">ویرایش</a> <a asp-action="Delete" asp-controller="Blog" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-danger">حذف</a>
+                            @if (item.IsPublish == false)
+                            {
+                                <a asp-action="PublishBlog" asp-controller="Blog" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-success">منتشر کردن</a>
+                            }
+                        </td>
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

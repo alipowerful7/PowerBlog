@@ -1,0 +1,40 @@
+﻿@model User
+@{
+    Layout = "_UserPanelLayout";
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <h5 class="m-0 fw-normal">@TempData["ErrorMessage"]</h5>
+    TempData.Remove("ErrorMessage");
+}
+<div class="row gx-3">
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0 fw-normal">موجودی فعلی من (تومان): @((Model.Wallet!=null)?Model.Wallet?.ToString("N0"):0)</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gx-3">
+    <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h3 class="m-0 fw-normal">افزایش موجودی</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <form asp-action="PostPay" asp-controller="Wallet" asp-area="" method="post">
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">مبلغ(تومان)</label>
+                        <input min="1000" value="1000" type="number" class="form-control" id="amount" name="amount" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">افزایش</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

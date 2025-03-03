@@ -1,0 +1,159 @@
+﻿@model User
+@{
+    Layout = null;
+}
+<style>
+    * {
+        font-family: DanaFaNum;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard Templates - One Admin Template</title>
+
+    <!-- Meta -->
+    <meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
+    <meta name="author" content="Bootstrap Gallery" />
+    <link rel="canonical" href="https://www.bootstrap.gallery/">
+    <meta property="og:url" content="https://www.bootstrap.gallery/">
+    <meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+    <meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+    <meta property="og:type" content="Website">
+    <meta property="og:site_name" content="Bootstrap Gallery">
+    <link rel="shortcut icon" href="~/AdminTemplate/assets/images/favicon.svg" />
+
+    <!-- *************
+            ************ CSS Files *************
+        ************* -->
+    <link rel="stylesheet" href="~/AdminTemplate/assets/fonts/bootstrap/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/AdminTemplate/assets/css/main.min.css" />
+
+</head>
+
+<body>
+
+    <!-- Page wrapper starts -->
+    <div class="page-wrapper">
+
+        <!-- Auth container starts -->
+        <div class="auth-container">
+
+            <div class="d-flex justify-content-center">
+
+                <!-- Form starts -->
+                <form method="post" enctype="multipart/form-data" asp-action="UserSignUpValidation" asp-controller="User">
+
+                    <!-- Logo starts -->
+                    <a class="auth-logo mt-5 mb-3">
+                        <img src="~/AdminTemplate/assets/images/logo.svg" alt="Bootstrap Gallery" />
+                    </a>
+                    <!-- Logo ends -->
+                    <!-- Authbox starts -->
+                    <div class="auth-box">
+
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="mb-3">
+                                <label class="form-label">@TempData["ErrorMessage"]</label>
+                            </div>
+                            TempData.Remove("ErrorMessage");
+                        }
+
+                        <h4 class="mb-4">ثبت نام</h4>
+
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.FirstName">نام<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <input required type="text" asp-for="@Model.FirstName" class="form-control" placeholder="نام خود را وارد نمائید">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.LastName">نام خانوادگی<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <input required type="text" asp-for="@Model.LastName" class="form-control" placeholder="نام خانوادگی خود را وارد نمائید">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.Email">ایمیل <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                                <input required type="email" asp-for="@Model.Email" class="form-control" placeholder="ایمیل خود را وارد نمائید">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.Phone">شماره تلفن<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <input maxlength="11" required type="text" asp-for="@Model.Phone" class="form-control" placeholder="شماره تلفن خود را وارد نمائید">
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-4">
+                            <label class="input-group-text" for="ImageFile">بارگذاری عکس</label>
+                            <input accept=".jpg,.png,.jpeg" type="file" class="form-control" id="ImageFile" name="ImageFile">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.UserName">نام کاربری<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <input required type="text" asp-for="@Model.UserName" class="form-control" placeholder="نام کاربری خود را وارد نمائید">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="@Model.Password">رمز عبور<span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                                <input required type="password" asp-for="@Model.Password" class="form-control" placeholder="رمز عبور خود را وارد نمائید">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">ثبت نام</button>
+                            <a class="btn btn-outline-secondary" asp-action="SignIn" asp-controller="User">از قبل حساب کاربری دارید؟ ورود</a>
+                        </div>
+
+                    </div>
+                    <!-- Authbox ends -->
+
+                </form>
+                <!-- Form ends -->
+
+            </div>
+
+        </div>
+        <!-- Auth container ends -->
+
+    </div>
+    <!-- Page wrapper ends -->
+
+</body>
+
+
+<!-- Mirrored from kodingwife.com/demos/templatemonster/one/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 May 2024 10:00:23 GMT -->
+<!-- Mirrored from onepanel.liara.run/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2024 13:04:34 GMT -->
+</html>
