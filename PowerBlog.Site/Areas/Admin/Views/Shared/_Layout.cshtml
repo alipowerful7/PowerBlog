@@ -125,6 +125,23 @@
                         </li>
                         <li class="treeview">
                             <a href="#!">
+                                <i class="bi bi-percent"></i>
+                                <span class="menu-text">کد تخفیف</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Offer" asp-area="Admin">مشاهده همه کد های تخفیف</a>
+                                </li>
+                                <li>
+                                    <a asp-action="CreatWithAmount" asp-controller="Offer" asp-area="Admin">ثبت کد تخفیف با مبلغ</a>
+                                </li>
+                                <li>
+                                    <a asp-action="CreatWithPercentage" asp-controller="Offer" asp-area="Admin">ثبت کد تخفیف با درصد</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#!">
                                 <i class="bi bi-person"></i>
                                 <span class="menu-text">کاربران</span>
                             </a>

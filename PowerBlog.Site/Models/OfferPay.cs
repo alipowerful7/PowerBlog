@@ -11,6 +11,8 @@ namespace PowerBlog.Site.Models
         public double? OfferPercentage { get; set; }
         public double? OfferAmount { get; set; }
         public string? Description { get; set; }
+        public bool IsDisable { get; set; }
+        public DateTime? CreatDate { get; set; }
 
 
         #region Relations
