@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace PowerBlog.Site.Models
 {
     public class Order
@@ -10,7 +9,7 @@ namespace PowerBlog.Site.Models
         public DateTime? PayDate { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
         public string? TransactionId { get; set; }
-
+        public string? OfferWord { get; set; }
 
         #region Relations
         public User? User { get; set; }

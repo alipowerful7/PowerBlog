@@ -26,5 +26,6 @@ namespace PowerBlog.Site.Data
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<ReactionBlog> ReactionBlogs { get; set; }
+        public DbSet<OfferPay> OfferPays { get; set; }
     }
 }
