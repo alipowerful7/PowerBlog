@@ -1,0 +1,51 @@
+﻿@model OfferPay
+<div class="row gx-3">
+    <div class="col-sm-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">ثبت کد تخفیف با مبلغ</h5>
+            </div>
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <h5 class="card-title">@TempData["ErrorMessage"]</h5>
+                TempData.Remove("ErrorMessage");
+            }
+            <form method="post" asp-action="PostCreatWithAmount" asp-controller="Offer" asp-area="Admin">
+                <div class="card-body">
+                    <!-- Row starts -->
+                    <div class="row gx-3">
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.OfferWord">کد تخفیف</label>
+                                <input type="text" class="form-control" asp-for="@Model.OfferWord" placeholder="کد تخفیف را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.OfferAmount">مبلغ تخفیف(تومان)</label>
+                                <input type="text" class="form-control" asp-for="@Model.OfferAmount" placeholder="مبلغ تخفیف(تومان) را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="@Model.Description">توضیحات</label>
+                                <textarea class="form-control" asp-for="@Model.Description" placeholder="توضیحات را وارد کنید" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="@Model.IsDisable">
+                            <label class="form-check-label" asp-for="@Model.IsDisable">غیر فعال</label>
+                        </div>
+                    </div>
+                    <!-- Row ends -->
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <button type="reset" class="btn btn-outline-secondary">پاک کردن همه</button>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

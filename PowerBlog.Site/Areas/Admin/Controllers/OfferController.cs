@@ -27,7 +27,34 @@ namespace PowerBlog.Site.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> PostCreatWithAmount(OfferPay offerPay)
         {
+            var offer = await _context.OfferPays.FirstOrDefaultAsync(x => x.OfferWord == offerPay.OfferWord);
+            if (offer!=null)
+            {
+                TempData["ErrorMessage"]= "کد تخفیف تکراری است";
+                return RedirectToAction("CreatWithAmount", "Offer", new { area = "Admin" });
+            }
+            offerPay.CreatDate = DateTime.Now;
+            await _context.OfferPays.AddAsync(offerPay);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Offer", new { area = "Admin" });
+        }
+        public IActionResult CreatWithPercentage()
+        {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostCreatWithPercentage(OfferPay offerPay)
+        {
+            var offer = await _context.OfferPays.FirstOrDefaultAsync(x => x.OfferWord == offerPay.OfferWord);
+            if (offer != null)
+            {
+                TempData["ErrorMessage"] = "کد تخفیف تکراری است";
+                return RedirectToAction("CreatWithAmount", "Offer", new { area = "Admin" });
+            }
+            offerPay.CreatDate = DateTime.Now;
+            await _context.OfferPays.AddAsync(offerPay);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Offer", new { area = "Admin" });
         }
     }
 }
