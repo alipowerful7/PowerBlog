@@ -11,5 +11,10 @@ namespace PowerBlog.Site.Models
         public double? OfferPercentage { get; set; }
         public double? OfferAmount { get; set; }
         public string? Description { get; set; }
+
+
+        #region Relations
+        public ICollection<Order>? Orders { get; set; }
+        #endregion
     }
 }
