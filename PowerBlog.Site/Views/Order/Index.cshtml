@@ -62,16 +62,43 @@ else
                     <th scope="row" class="px-6 py-5 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
                     <td class="px-6 py-5"></td>
                     <td class="px-6 py-5"></td>
-                    <td class="px-6 py-5">مجموع: @Model.Sum(o => o.Blog?.Price)?.ToString("N0") تومان</td>
+                    @if (TempData["OfferAmount"] != null)
+                    {
+                        <td class="px-6 py-5">مجموع: @Model.Sum(o => o.Blog?.Price)?.ToString("N0") تومان با تخفیف @((decimal.TryParse(TempData["OfferAmount"]?.ToString(), out var amount) ? amount.ToString("N0") : "0")) تومان</td>
+                    }
+                    else
+                    {
+                        <td class="px-6 py-5">مجموع: @Model.Sum(o => o.Blog?.Price)?.ToString("N0") تومان</td>
+                    }
                     <td class="px-6 py-5 text-red-500"></td>
                 </tr>
             </tbody>
         </table>
-        <form asp-action="PostPay" asp-controller="Order" asp-area="" asp-route-amount="@Model.Sum(o => o.Blog?.Price)" method="post">
-            <button class="w-full flex items-center gap-x-1 justify-center bg-green-500 text-white hover:bg-green-600 transition-all rounded-lg shadow py-2">پرداخت</button>
+        <form asp-action="CalculationOffer" asp-controller="Offer" asp-area="" asp-route-amount="@Model.Sum(o => o.Blog?.Price)" method="post">
+            <h2 class="font-MorabbaMedium text-lg lg:text-2xl">
+                کد تخفیف دارید؟ وارد کنید:
+            </h2>
+            <input style="color:black;" type="text" name="offerWord" id="offerWord" />
+            <button id="offerBtn" class="flex items-center gap-x-1 justify-center bg-violet-500 text-white hover:bg-violet-600 transition-all rounded-lg shadow py-2">اعمال کد تخفیف</button>
         </form>
-        <form asp-action="PostBuyBlog" asp-controller="Wallet" asp-area="" asp-route-amount="@Model.Sum(o => o.Blog?.Price)" method="post">
-            <button class="w-full flex items-center gap-x-1 justify-center bg-rose-500 text-white hover:bg-rose-600 transition-all rounded-lg shadow py-2">پرداخت با کیف پول</button>
-        </form>
+        @if (TempData["OfferAmount"] != null)
+        {
+            <form asp-action="PostPay" asp-controller="Order" asp-area="" asp-route-amount="@TempData["OfferAmount"]" method="post">
+                <button class="w-full flex items-center gap-x-1 justify-center bg-green-500 text-white hover:bg-green-600 transition-all rounded-lg shadow py-2">پرداخت</button>
+            </form>
+            <form asp-action="PostBuyBlog" asp-controller="Wallet" asp-area="" asp-route-amount="@TempData["OfferAmount"]" method="post">
+                <button class="w-full flex items-center gap-x-1 justify-center bg-rose-500 text-white hover:bg-rose-600 transition-all rounded-lg shadow py-2">پرداخت با کیف پول</button>
+            </form>
+            TempData.Remove("OfferAmount");
+        }
+        else
+        {
+            <form asp-action="PostPay" asp-controller="Order" asp-area="" asp-route-amount="@Model.Sum(o => o.Blog?.Price)" method="post">
+                <button class="w-full flex items-center gap-x-1 justify-center bg-green-500 text-white hover:bg-green-600 transition-all rounded-lg shadow py-2">پرداخت</button>
+            </form>
+            <form asp-action="PostBuyBlog" asp-controller="Wallet" asp-area="" asp-route-amount="@Model.Sum(o => o.Blog?.Price)" method="post">
+                <button class="w-full flex items-center gap-x-1 justify-center bg-rose-500 text-white hover:bg-rose-600 transition-all rounded-lg shadow py-2">پرداخت با کیف پول</button>
+            </form>
+        }
     </div>
 }

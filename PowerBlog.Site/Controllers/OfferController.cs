@@ -13,6 +13,7 @@ namespace PowerBlog.Site.Controllers
         {
             _context = context;
         }
+        [HttpPost]
         public async Task<IActionResult> CalculationOffer(string? offerWord, decimal? amount)
         {
             decimal? offerAmount = 0;
@@ -39,7 +40,7 @@ namespace PowerBlog.Site.Controllers
                     offerAmount = 0;
                 }
             }
-            TempData["OfferAmount"] = offerAmount;
+            TempData["OfferAmount"] = offerAmount.ToString();
             return RedirectToAction("Index", "Order");
         }
     }
