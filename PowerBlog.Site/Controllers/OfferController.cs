@@ -13,10 +13,6 @@ namespace PowerBlog.Site.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
         public async Task<IActionResult> CalculationOffer(string? offerWord, decimal? amount)
         {
             decimal? offerAmount = 0;
