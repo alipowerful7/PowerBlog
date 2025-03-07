@@ -1,11 +1,9 @@
-﻿using Humanizer;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using PowerBlog.Site.Attributes;
 using PowerBlog.Site.Data;
 using PowerBlog.Site.Models;
-using System.Threading.Tasks;
 
 namespace PowerBlog.Site.Controllers
 {

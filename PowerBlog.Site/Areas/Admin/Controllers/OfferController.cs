@@ -102,7 +102,7 @@ namespace PowerBlog.Site.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Delete(long? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -117,7 +117,7 @@ namespace PowerBlog.Site.Areas.Admin.Controllers
         }
         public async Task<IActionResult> EnableOffer(long? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return NotFound();
             }
