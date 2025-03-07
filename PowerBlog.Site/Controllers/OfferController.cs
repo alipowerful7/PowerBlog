@@ -43,5 +43,10 @@ namespace PowerBlog.Site.Controllers
             TempData["OfferAmount"] = offerAmount.ToString();
             return RedirectToAction("Index", "Order");
         }
+        public IActionResult DeleteOffer()
+        {
+            TempData.Remove("OfferAmount");
+            return RedirectToAction("Index", "Order");
+        }
     }
 }

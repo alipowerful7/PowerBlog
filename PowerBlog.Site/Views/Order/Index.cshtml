@@ -74,13 +74,20 @@ else
                 </tr>
             </tbody>
         </table>
-        <form asp-action="CalculationOffer" asp-controller="Offer" asp-area="" asp-route-amount="@Model.Sum(o => o.Blog?.Price)" method="post">
-            <h2 class="font-MorabbaMedium text-lg lg:text-2xl">
-                کد تخفیف دارید؟ وارد کنید:
-            </h2>
-            <input style="color:black;" type="text" name="offerWord" id="offerWord" />
-            <button id="offerBtn" class="flex items-center gap-x-1 justify-center bg-violet-500 text-white hover:bg-violet-600 transition-all rounded-lg shadow py-2">اعمال کد تخفیف</button>
-        </form>
+        @if (TempData["OfferAmount"] == null)
+        {
+            <form asp-action="CalculationOffer" asp-controller="Offer" asp-area="" asp-route-amount="@Model.Sum(o => o.Blog?.Price)" method="post">
+                <h2 class="font-MorabbaMedium text-lg lg:text-2xl">
+                    کد تخفیف دارید؟ وارد کنید:
+                </h2>
+                <input style="color:black;" type="text" name="offerWord" id="offerWord" />
+                <button id="offerBtn" class="flex items-center gap-x-1 justify-center bg-violet-500 text-white hover:bg-violet-600 transition-all rounded-lg shadow py-2">اعمال کد تخفیف</button>
+            </form>
+        }
+        else
+        {
+            <a asp-action="DeleteOffer" asp-controller="Offer" asp-area="" id="offerBtn" class="flex items-center gap-x-1 justify-center bg-rose-500 text-white hover:bg-rose-600 transition-all rounded-lg shadow py-2">حذف کد تخفیف</a>
+        }
         @if (TempData["OfferAmount"] != null)
         {
             <form asp-action="PostPay" asp-controller="Order" asp-area="" asp-route-amount="@TempData["OfferAmount"]" method="post">
