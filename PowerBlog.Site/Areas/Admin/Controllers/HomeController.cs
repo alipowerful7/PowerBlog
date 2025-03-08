@@ -22,7 +22,13 @@ namespace PowerBlog.Site.Areas.Admin.Controllers
             var unPublishPriceBlogs = await _context.Blogs.Where(b => b.Price != null && b.IsPublish == false).CountAsync();
             var unPublishBlogs = await _context.Blogs.Where(b => b.IsPublish == false).CountAsync();
             var publishBlogs = await _context.Blogs.Where(b => b.IsPublish == true).CountAsync();
+
+
+
             var todaySell = await _context.Orders.Include(o => o.Blog).Where(o => o.PayDate.Value.Date == DateTime.Now.Date).SumAsync(o => o.Blog.Price);
+
+
+
             var allComment = await _context.Comments.CountAsync();
             var confirmComment = await _context.Comments.Where(c => c.IsConfirmation == true).CountAsync();
             var unConfirmComment = await _context.Comments.Where(c => c.IsConfirmation == false).CountAsync();
