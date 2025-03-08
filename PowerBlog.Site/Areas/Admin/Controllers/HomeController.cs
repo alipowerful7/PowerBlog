@@ -25,9 +25,28 @@ namespace PowerBlog.Site.Areas.Admin.Controllers
 
 
 
-            var todaySell = await _context.Orders.Include(o => o.Blog).Where(o => o.PayDate.Value.Date == DateTime.Now.Date).SumAsync(o => o.Blog.Price);
+            var sellWithOutOffer = await _context.Orders.Include(o => o.Blog).Include(o => o.OfferPay).Where(o => o.PayDate.Value.Date == DateTime.Now.Date && o.OfferPayId == null).SumAsync(o => o.Blog.Price);
 
-
+            var sellWithOfferList = await _context.Orders.Include(o => o.Blog).Include(o => o.OfferPay).Where(o => o.PayDate.Value.Date == DateTime.Now.Date && o.OfferPayId != null).ToListAsync();
+            decimal? sellWithOffer = 0;
+            foreach (var order in sellWithOfferList)
+            {
+                decimal? offerAmount = 0;
+                if (order.OfferPay.OfferPercentage != null)
+                {
+                    offerAmount = order.Blog.Price - (order.Blog.Price * order.OfferPay.OfferPercentage / 100);
+                }
+                else if (order.OfferPay.OfferAmount != null)
+                {
+                    offerAmount = order.Blog.Price - order.OfferPay.OfferAmount;
+                    if (offerAmount < 0)
+                    {
+                        offerAmount = 0;
+                    }
+                }
+                sellWithOffer += offerAmount;
+            }
+            var todaySell = sellWithOutOffer + sellWithOffer;
 
             var allComment = await _context.Comments.CountAsync();
             var confirmComment = await _context.Comments.Where(c => c.IsConfirmation == true).CountAsync();
