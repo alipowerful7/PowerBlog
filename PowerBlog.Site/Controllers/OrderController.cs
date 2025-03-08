@@ -86,6 +86,11 @@ namespace PowerBlog.Site.Controllers
                 order.PaymentStatus = PaymentStatus.Paid;
                 order.TransactionId = trackId;
                 order.PayDate = DateTime.Now;
+                if (TempData["OfferWord"] != null)
+                {
+                    order.OfferPayId = long.Parse(TempData["OfferWord"].ToString());
+                    TempData.Keep("OfferWord");
+                }
             }
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Order");

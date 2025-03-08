@@ -41,6 +41,7 @@ namespace PowerBlog.Site.Controllers
                 }
             }
             TempData["OfferAmount"] = offerAmount.ToString();
+            TempData["OfferWord"] = offer.Id.ToString();
             return RedirectToAction("Index", "Order");
         }
         public IActionResult DeleteOffer()
