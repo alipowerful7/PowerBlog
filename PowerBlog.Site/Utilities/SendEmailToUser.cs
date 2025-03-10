@@ -27,9 +27,9 @@ namespace PowerBlog.Site.Utilities
             message.To.Add(new MailboxAddress("", recipientEmail));
 
             message.Subject = $"{subject}";
-            message.Body = new TextPart("None")
+            message.Body = new TextPart("html")
             {
-                Text = userMessage
+                Text = $"<h2>{userMessage}</h2>"
             };
             try
             {
