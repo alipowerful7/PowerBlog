@@ -166,6 +166,12 @@
                             </ul>
                         </li>
                         <li>
+                            <a asp-action="Index" asp-controller="SendEmailToUser" asp-area="Admin">
+                                <i class="bi bi-pass"></i>
+                                <span class="menu-text">ارسال ایمیل به کاربران</span>
+                            </a>
+                        </li>
+                        <li>
                             <a asp-action="Index" asp-controller="Home" asp-area="">
                                 <i class="bi bi-infinity"></i>
                                 <span class="menu-text">سایت</span>
@@ -184,270 +190,270 @@
                             </a>
                         </li>
                         @*<li>
-                                <a href="index-2.html">
-                                    <i class="bi bi-pie-chart"></i>
-                                    <span class="menu-text">داشبورد</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="analytics.html">
-                                    <i class="bi bi-bar-chart-line"></i>
-                                    <span class="menu-text">تجزیه و تحلیل</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="widgets.html">
-                                    <i class="bi bi-box"></i>
-                                    <span class="menu-text">ویجت ها</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="calendar.html">
-                                    <i class="bi bi-calendar2"></i>
-                                    <span class="menu-text">تقویم</span>
-                                </a>
-                            </li>
-                            <li class="active current-page">
-                                <a href="default.html">
-                                    <i class="bi bi-layout-sidebar"></i>
-                                    <span class="menu-text"> طرح بندی پیش فرض</span>
-                                </a>
-                            </li>
-                            <li class="treeview">
-                                <a href="#!">
-                                    <i class="bi bi-stickies"></i>
-                                    <span class="menu-text"> کامپوننت ها</span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="accordions.html">آکاردئون</a>
-                                    </li>
-                                    <li>
-                                        <a href="alerts.html">هشدارها</a>
-                                    </li>
-                                    <li>
-                                        <a href="buttons.html">دکمه ها</a>
-                                    </li>
-                                    <li>
-                                        <a href="badges.html">نشان ها</a>
-                                    </li>
-                                    <li>
-                                        <a href="carousel.html">اسلایدر</a>
-                                    </li>
-                                    <li>
-                                        <a href="list-items.html">لیست ها</a>
-                                    </li>
-                                    <li>
-                                        <a href="progress.html">لودینگ ها</a>
-                                    </li>
-                                    <li>
-                                        <a href="popovers.html">دیالوگ پاپ اور</a>
-                                    </li>
-                                    <li>
-                                        <a href="tooltips.html">متن راهنما</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#!">
-                                    <i class="bi bi-ui-checks-grid"></i>
-                                    <span class="menu-text">فرم ها</span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="form-inputs.html">اینپوت ها</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-checkbox-radio.html">چک باکس و رادیو باتن</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-file-input.html">ورودی فایل</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-validations.html"> اعتبار سنجی</a>
-                                    </li>
-                                    <li>
-                                        <a href="date-time-pickers.html">انتخاب تاریخ و زمان</a>
-                                    </li>
-                                    <li>
-                                        <a href="form-layouts.html"> طرح‌بندی فرم</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#!">
-                                    <i class="bi bi-window-sidebar"></i>
-                                    <span class="menu-text">فاکتور</span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="create-invoice.html">ایجاد فاکتور</a>
-                                    </li>
-                                    <li>
-                                        <a href="view-invoice.html">نمایش فاکتور</a>
-                                    </li>
-                                    <li>
-                                        <a href="invoice-list.html">لیست فاکتور</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="tables.html">
-                                    <i class="bi bi-border-all"></i>
-                                    <span class="menu-text">جدول ها</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="subscribers.html">
-                                    <i class="bi bi-check-circle"></i>
-                                    <span class="menu-text"> دنبال کنندگان</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="contacts.html">
-                                    <i class="bi bi-wallet2"></i>
-                                    <span class="menu-text"> مخاطبان</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="settings.html">
-                                    <i class="bi bi-gear"></i>
-                                    <span class="menu-text"> تنظیمات</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="profile.html">
-                                    <i class="bi bi-person-square"></i>
-                                    <span class="menu-text"> پروفایل</span>
-                                </a>
-                            </li>
-                            <li class="treeview">
-                                <a href="#!">
-                                    <i class="bi bi-code-square"></i>
-                                    <span class="menu-text">کارت ها</span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="cards.html">کارت ها</a>
-                                    </li>
-                                    <li>
-                                        <a href="advanced-cards.html">کارت های پیشرفته</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#!">
-                                    <i class="bi bi-pie-chart"></i>
-                                    <span class="menu-text"> نمودارها</span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="apex.html"> نمودارهای راس</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html"> نمودارهای موریس</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="maps.html">
-                                    <i class="bi bi-pin-map"></i>
-                                    <span class="menu-text"> نقشه</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tabs.html">
-                                    <i class="bi bi-slash-square"></i>
-                                    <span class="menu-text"> تب بار</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="modals.html">
-                                    <i class="bi bi-terminal"></i>
-                                    <span class="menu-text">مُدال</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="icons.html">
-                                    <i class="bi bi-textarea"></i>
-                                    <span class="menu-text">آیکون ها</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="typography.html">
-                                    <i class="bi bi-explicit"></i>
-                                    <span class="menu-text">تایپوگرافی</span>
-                                </a>
-                            </li>
-                            <li class="treeview">
-                                <a href="#!">
-                                    <i class="bi bi-upc-scan"></i>
-                                    <span class="menu-text">ورود / ثبت نام</span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="login.html">ورود</a>
-                                    </li>
-                                    <li>
-                                        <a href="signup.html">ثبت نام</a>
-                                    </li>
-                                    <li>
-                                        <a href="forgot-password.html">فراموشی رمز عبور</a>
-                                    </li>
-                                    <li>
-                                        <a href="reset-password.html">ریست کردن رمز عبور</a>
-                                    </li>
-                                    <li>
-                                        <a href="lock-screen.html">قفل صفحه</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="page-not-found.html">
-                                    <i class="bi bi-exclamation-diamond"></i>
-                                    <span class="menu-text">صفحه در دسترس نیست</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="maintenance.html">
-                                    <i class="bi bi-exclamation-octagon"></i>
-                                    <span class="menu-text">صفحه در دست تعمیر</span>
-                                </a>
-                            </li>
-                            <li class="treeview">
-                                <a href="#!">
-                                    <i class="bi bi-code-square"></i>
-                                    <span class="menu-text">منوی تودرتو</span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li>
-                                        <a href="#!">1 منوی </a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">
-                                            2 منوی <i class="bi bi-caret-left-fill"></i>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li>
-                                                <a href="#!">2.1 منوی </a>
-                                            </li>
-                                            <li>
-                                                <a href="#!">
-                                                    2.2 منوی <i class="bi bi-caret-left-fill"></i>
-                                                </a>
-                                                <ul class="treeview-menu">
-                                                    <li>
-                                                        <a href="#!">2.2.1 منوی </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#!">2.2.2 منوی </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>*@
+            <a href="index-2.html">
+                <i class="bi bi-pie-chart"></i>
+                <span class="menu-text">داشبورد</span>
+            </a>
+        </li>
+        <li>
+            <a href="analytics.html">
+                <i class="bi bi-bar-chart-line"></i>
+                <span class="menu-text">تجزیه و تحلیل</span>
+            </a>
+        </li>
+        <li>
+            <a href="widgets.html">
+                <i class="bi bi-box"></i>
+                <span class="menu-text">ویجت ها</span>
+            </a>
+        </li>
+        <li>
+            <a href="calendar.html">
+                <i class="bi bi-calendar2"></i>
+                <span class="menu-text">تقویم</span>
+            </a>
+        </li>
+        <li class="active current-page">
+            <a href="default.html">
+                <i class="bi bi-layout-sidebar"></i>
+                <span class="menu-text"> طرح بندی پیش فرض</span>
+            </a>
+        </li>
+        <li class="treeview">
+            <a href="#!">
+                <i class="bi bi-stickies"></i>
+                <span class="menu-text"> کامپوننت ها</span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="accordions.html">آکاردئون</a>
+                </li>
+                <li>
+                    <a href="alerts.html">هشدارها</a>
+                </li>
+                <li>
+                    <a href="buttons.html">دکمه ها</a>
+                </li>
+                <li>
+                    <a href="badges.html">نشان ها</a>
+                </li>
+                <li>
+                    <a href="carousel.html">اسلایدر</a>
+                </li>
+                <li>
+                    <a href="list-items.html">لیست ها</a>
+                </li>
+                <li>
+                    <a href="progress.html">لودینگ ها</a>
+                </li>
+                <li>
+                    <a href="popovers.html">دیالوگ پاپ اور</a>
+                </li>
+                <li>
+                    <a href="tooltips.html">متن راهنما</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#!">
+                <i class="bi bi-ui-checks-grid"></i>
+                <span class="menu-text">فرم ها</span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="form-inputs.html">اینپوت ها</a>
+                </li>
+                <li>
+                    <a href="form-checkbox-radio.html">چک باکس و رادیو باتن</a>
+                </li>
+                <li>
+                    <a href="form-file-input.html">ورودی فایل</a>
+                </li>
+                <li>
+                    <a href="form-validations.html"> اعتبار سنجی</a>
+                </li>
+                <li>
+                    <a href="date-time-pickers.html">انتخاب تاریخ و زمان</a>
+                </li>
+                <li>
+                    <a href="form-layouts.html"> طرح‌بندی فرم</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#!">
+                <i class="bi bi-window-sidebar"></i>
+                <span class="menu-text">فاکتور</span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="create-invoice.html">ایجاد فاکتور</a>
+                </li>
+                <li>
+                    <a href="view-invoice.html">نمایش فاکتور</a>
+                </li>
+                <li>
+                    <a href="invoice-list.html">لیست فاکتور</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="tables.html">
+                <i class="bi bi-border-all"></i>
+                <span class="menu-text">جدول ها</span>
+            </a>
+        </li>
+        <li>
+            <a href="subscribers.html">
+                <i class="bi bi-check-circle"></i>
+                <span class="menu-text"> دنبال کنندگان</span>
+            </a>
+        </li>
+        <li>
+            <a href="contacts.html">
+                <i class="bi bi-wallet2"></i>
+                <span class="menu-text"> مخاطبان</span>
+            </a>
+        </li>
+        <li>
+            <a href="settings.html">
+                <i class="bi bi-gear"></i>
+                <span class="menu-text"> تنظیمات</span>
+            </a>
+        </li>
+        <li>
+            <a href="profile.html">
+                <i class="bi bi-person-square"></i>
+                <span class="menu-text"> پروفایل</span>
+            </a>
+        </li>
+        <li class="treeview">
+            <a href="#!">
+                <i class="bi bi-code-square"></i>
+                <span class="menu-text">کارت ها</span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="cards.html">کارت ها</a>
+                </li>
+                <li>
+                    <a href="advanced-cards.html">کارت های پیشرفته</a>
+                </li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#!">
+                <i class="bi bi-pie-chart"></i>
+                <span class="menu-text"> نمودارها</span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="apex.html"> نمودارهای راس</a>
+                </li>
+                <li>
+                    <a href="morris.html"> نمودارهای موریس</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="maps.html">
+                <i class="bi bi-pin-map"></i>
+                <span class="menu-text"> نقشه</span>
+            </a>
+        </li>
+        <li>
+            <a href="tabs.html">
+                <i class="bi bi-slash-square"></i>
+                <span class="menu-text"> تب بار</span>
+            </a>
+        </li>
+        <li>
+            <a href="modals.html">
+                <i class="bi bi-terminal"></i>
+                <span class="menu-text">مُدال</span>
+            </a>
+        </li>
+        <li>
+            <a href="icons.html">
+                <i class="bi bi-textarea"></i>
+                <span class="menu-text">آیکون ها</span>
+            </a>
+        </li>
+        <li>
+            <a href="typography.html">
+                <i class="bi bi-explicit"></i>
+                <span class="menu-text">تایپوگرافی</span>
+            </a>
+        </li>
+        <li class="treeview">
+            <a href="#!">
+                <i class="bi bi-upc-scan"></i>
+                <span class="menu-text">ورود / ثبت نام</span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="login.html">ورود</a>
+                </li>
+                <li>
+                    <a href="signup.html">ثبت نام</a>
+                </li>
+                <li>
+                    <a href="forgot-password.html">فراموشی رمز عبور</a>
+                </li>
+                <li>
+                    <a href="reset-password.html">ریست کردن رمز عبور</a>
+                </li>
+                <li>
+                    <a href="lock-screen.html">قفل صفحه</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="page-not-found.html">
+                <i class="bi bi-exclamation-diamond"></i>
+                <span class="menu-text">صفحه در دسترس نیست</span>
+            </a>
+        </li>
+        <li>
+            <a href="maintenance.html">
+                <i class="bi bi-exclamation-octagon"></i>
+                <span class="menu-text">صفحه در دست تعمیر</span>
+            </a>
+        </li>
+        <li class="treeview">
+            <a href="#!">
+                <i class="bi bi-code-square"></i>
+                <span class="menu-text">منوی تودرتو</span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a href="#!">1 منوی </a>
+                </li>
+                <li>
+                    <a href="#!">
+                        2 منوی <i class="bi bi-caret-left-fill"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="#!">2.1 منوی </a>
+                        </li>
+                        <li>
+                            <a href="#!">
+                                2.2 منوی <i class="bi bi-caret-left-fill"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="#!">2.2.1 منوی </a>
+                                </li>
+                                <li>
+                                    <a href="#!">2.2.2 منوی </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>*@
                     </ul>
                 </div>
                 <!-- Sidebar menu ends -->

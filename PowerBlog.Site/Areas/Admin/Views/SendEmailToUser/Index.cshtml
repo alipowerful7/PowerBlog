@@ -1,0 +1,39 @@
+﻿<div class="row gx-3">
+    <div class="col-sm-12">
+        <div class="card mb-3">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <h5 class="card-title">@TempData["SuccessMessage"]</h5>
+                TempData.Remove("SuccessMessage");
+            }
+            <div class="card-header">
+                <h5 class="card-title">ارسال ایمیل به کاربران</h5>
+            </div>
+            <form method="post" asp-action="PostSendEmailToUser" asp-controller="SendEmailToUser" asp-area="Admin">
+                <div class="card-body">
+                    <!-- Row starts -->
+                    <div class="row gx-3">
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="subject">عنوان ایمیل</label>
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="عنوان ایمیل را وارد کنید" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="message">متن ایمیل</label>
+                                <input type="text" class="form-control" name="message" id="message" placeholder="متن ایمیل را وارد کنید" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row ends -->
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <button type="submit" class="btn btn-primary">ارسال ایمیل</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
