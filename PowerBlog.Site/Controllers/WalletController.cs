@@ -19,7 +19,7 @@ namespace PowerBlog.Site.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == long.Parse(HttpContext.Session.GetString("UserId")));
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == long.Parse(HttpContext.Session.GetString("UserId")!));
             if (user == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace PowerBlog.Site.Controllers
                 TempData["ErrorMessage"] = "پرداخت ناموفق بود.";
                 return RedirectToAction("Index", "Wallet");
             }
-            var userId = long.Parse(HttpContext.Session.GetString("UserId"));
+            var userId = long.Parse(HttpContext.Session.GetString("UserId")!);
             var userWallet = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (userWallet == null)
             {
@@ -62,11 +62,11 @@ namespace PowerBlog.Site.Controllers
             }
             if (userWallet.Wallet == null)
             {
-                userWallet.Wallet = decimal.Parse(TempData["Amount"].ToString());
+                userWallet.Wallet = decimal.Parse(TempData?["Amount"]?.ToString()!);
             }
             else
             {
-                userWallet.Wallet += decimal.Parse(TempData["Amount"].ToString());
+                userWallet.Wallet += decimal.Parse(TempData?["Amount"]?.ToString()!);
             }
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Wallet");
@@ -78,7 +78,7 @@ namespace PowerBlog.Site.Controllers
             {
                 return NotFound();
             }
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == long.Parse(HttpContext.Session.GetString("UserId")));
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == long.Parse(HttpContext.Session.GetString("UserId")!));
             if (user == null)
             {
                 return NotFound();

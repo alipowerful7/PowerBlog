@@ -25,20 +25,20 @@ namespace PowerBlog.Site.Areas.Admin.Controllers
 
 
 
-            var sellWithOutOffer = await _context.Orders.Include(o => o.Blog).Include(o => o.OfferPay).Where(o => o.PayDate.Value.Date == DateTime.Now.Date && o.OfferPayId == null).SumAsync(o => o.Blog.Price);
+            var sellWithOutOffer = await _context.Orders.Include(o => o.Blog).Include(o => o.OfferPay).Where(o => o.PayDate!.Value.Date == DateTime.Now.Date && o.OfferPayId == null).SumAsync(o => o.Blog!.Price);
 
-            var sellWithOfferList = await _context.Orders.Include(o => o.Blog).Include(o => o.OfferPay).Where(o => o.PayDate.Value.Date == DateTime.Now.Date && o.OfferPayId != null).ToListAsync();
+            var sellWithOfferList = await _context.Orders.Include(o => o.Blog).Include(o => o.OfferPay).Where(o => o.PayDate!.Value.Date == DateTime.Now.Date && o.OfferPayId != null).ToListAsync();
             decimal? sellWithOffer = 0;
             foreach (var order in sellWithOfferList)
             {
                 decimal? offerAmount = 0;
-                if (order.OfferPay.OfferPercentage != null)
+                if (order.OfferPay?.OfferPercentage != null)
                 {
-                    offerAmount = order.Blog.Price - (order.Blog.Price * order.OfferPay.OfferPercentage / 100);
+                    offerAmount = order.Blog?.Price - (order.Blog?.Price * order.OfferPay.OfferPercentage / 100);
                 }
-                else if (order.OfferPay.OfferAmount != null)
+                else if (order.OfferPay?.OfferAmount != null)
                 {
-                    offerAmount = order.Blog.Price - order.OfferPay.OfferAmount;
+                    offerAmount = order.Blog?.Price - order.OfferPay.OfferAmount;
                     if (offerAmount < 0)
                     {
                         offerAmount = 0;

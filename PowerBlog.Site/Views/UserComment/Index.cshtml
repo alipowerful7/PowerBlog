@@ -23,9 +23,9 @@
                     <tr>
                         <td>@counter</td>
                         <td>@item.Title</td>
-                        <td>@item.Blog.Title</td>
-                        <td>@item.CreateDate.Value.ToShamsi()</td>
-                        <td>@(item.IsConfirmation?"تایید شده":"تایید نشده")</td>
+                        <td>@item?.Blog?.Title</td>
+                        <td>@item?.CreateDate!.Value.ToShamsi()</td>
+                        <td>@(item!.IsConfirmation?"تایید شده":"تایید نشده")</td>
                         <td>
                             <a asp-action="Details" asp-controller="UserComment" asp-area="" asp-route-id="@item.Id" class="btn btn-outline-info">جزئیات</a> <a asp-action="Delete" asp-controller="UserComment" asp-area="" asp-route-id="@item.Id" class="btn btn-outline-danger">حذف</a>
                         </td>

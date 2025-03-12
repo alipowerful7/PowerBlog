@@ -165,11 +165,11 @@ namespace PowerBlog.Site.Controllers
 
                 // انتقال فایل از مسیر قدیمی به مسیر جدید؛ File.Move مسیر قدیمی را حذف می‌کند
                 System.IO.File.Move(oldFilePath, newFilePath);
-                user.Photo = fileName;
+                user!.Photo = fileName;
                 System.IO.File.Delete(oldFilePath);
             }
 
-            user.UserRole = UserRole.NormalUser;
+            user!.UserRole = UserRole.NormalUser;
             user.CreateDate = DateTime.Now;
             user.Password = user.Password?.HashPassword();
             await _context.Users.AddAsync(user);
@@ -237,7 +237,7 @@ namespace PowerBlog.Site.Controllers
             var random = new Random();
             string verificationCode = random.Next(100000, 999999).ToString();
             var sendVerifyEmail = new SendVerifyEmail(_configuration);
-            var isTrue = await sendVerifyEmail.SendEmail(email, verificationCode);
+            var isTrue = await sendVerifyEmail.SendEmail(email!, verificationCode);
             if (isTrue == false)
             {
                 return NotFound();
@@ -262,8 +262,8 @@ namespace PowerBlog.Site.Controllers
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == TempData["UserEmail"]!.ToString());
 
             HttpContext.Session.SetString("IsLoggedIn", "true");
-            HttpContext.Session.SetString("UserId", user?.Id.ToString());
-            HttpContext.Session.SetString("UserRole", user.UserRole.ToString());
+            HttpContext.Session.SetString("UserId", user?.Id.ToString()!);
+            HttpContext.Session.SetString("UserRole", user!.UserRole.ToString());
             if (user.UserRole == UserRole.Admin || user.UserRole == UserRole.Author)
             {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
@@ -298,7 +298,7 @@ namespace PowerBlog.Site.Controllers
             var random = new Random();
             string verificationCode = random.Next(100000, 999999).ToString();
             var sendVerifyEmail = new SendVerifyEmail(_configuration);
-            var isTrue = await sendVerifyEmail.SendEmail(email, verificationCode);
+            var isTrue = await sendVerifyEmail.SendEmail(email!, verificationCode);
             if (isTrue == false)
             {
                 return NotFound();
@@ -307,7 +307,7 @@ namespace PowerBlog.Site.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> PostForgetPasswordCode(string? emailCode)
+        public IActionResult PostForgetPasswordCode(string? emailCode)
         {
             if (emailCode == null)
             {
@@ -334,7 +334,7 @@ namespace PowerBlog.Site.Controllers
                 return RedirectToAction("ChangePassword", "User");
             }
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == TempData["UserEmail"]!.ToString());
-            user.Password = newPassword.HashPassword();
+            user!.Password = newPassword.HashPassword();
             await _context.SaveChangesAsync();
             return RedirectToAction("SignIn", "User");
         }

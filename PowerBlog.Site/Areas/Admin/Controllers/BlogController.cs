@@ -93,7 +93,7 @@ namespace PowerBlog.Site.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> PostEdit(BlogViewModel postBlog, IFormFile? ImageFile)
         {
-            var blog = await _context.Blogs.FirstOrDefaultAsync(b => b.Id == postBlog.Blog.Id);
+            var blog = await _context.Blogs.FirstOrDefaultAsync(b => b.Id == postBlog.Blog!.Id);
             if (blog == null)
             {
                 return NotFound();
@@ -110,13 +110,13 @@ namespace PowerBlog.Site.Areas.Admin.Controllers
                 }
                 blog.Photo = fileName;
             }
-            blog.Title = postBlog.Blog.Title;
-            blog.ShortDescription = postBlog.Blog.ShortDescription;
-            blog.TextBody = postBlog.Blog.TextBody;
-            blog.UpdateDate = postBlog.Blog.UpdateDate;
-            blog.IsPublish = postBlog.Blog.IsPublish;
-            blog.CategoryId = postBlog.Blog.CategoryId;
-            blog.UserId = postBlog.Blog.UserId;
+            blog.Title = postBlog.Blog?.Title;
+            blog.ShortDescription = postBlog.Blog?.ShortDescription;
+            blog.TextBody = postBlog.Blog?.TextBody;
+            blog.UpdateDate = postBlog.Blog?.UpdateDate;
+            blog.IsPublish = postBlog.Blog!.IsPublish;
+            blog.CategoryId = postBlog.Blog?.CategoryId;
+            blog.UserId = postBlog.Blog?.UserId;
             _context.Blogs.Update(blog);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");

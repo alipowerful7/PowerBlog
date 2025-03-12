@@ -16,11 +16,11 @@ namespace PowerBlog.Site.Controllers
         public async Task<IActionResult> Index(List<Blog>? blog, bool isSearch = false)
         {
             var blogs = await _context.Blogs.Where(b => b.IsPublish == true && b.Price == null).OrderByDescending(b => b.CreateDate).ToListAsync();
-            if (blog.Count != 0)
+            if (blog?.Count != 0)
             {
                 blogs = blog;
             }
-            if (isSearch == true && blog.Count == 0)
+            if (isSearch == true && blog?.Count == 0)
             {
                 blogs = new List<Blog>();
                 TempData["ErrorMessage"] = "مقاله ای با این نام پیدا نشد!";
@@ -33,7 +33,7 @@ namespace PowerBlog.Site.Controllers
             {
                 return NotFound();
             }
-            var blog = await _context.Blogs.Include(b => b.Comments.Where(c => c.IsConfirmation == true)).ThenInclude(c => c.User).Include(b => b.Comments.Where(c => c.IsConfirmation == true)).ThenInclude(c => c.ReactionBlogs).Include(b => b.User).Include(b => b.ReactionBlogs).FirstOrDefaultAsync(b => b.Id == id && b.IsPublish == true);
+            var blog = await _context.Blogs.Include(b => b.Comments!.Where(c => c.IsConfirmation == true)).ThenInclude(c => c.User).Include(b => b.Comments!.Where(c => c.IsConfirmation == true)).ThenInclude(c => c.ReactionBlogs).Include(b => b.User).Include(b => b.ReactionBlogs).FirstOrDefaultAsync(b => b.Id == id && b.IsPublish == true);
             if (blog == null)
             {
                 return NotFound();
@@ -93,7 +93,7 @@ namespace PowerBlog.Site.Controllers
             {
                 return NotFound();
             }
-            var category = await _context.Categories.Include(c => c.Blogs.Where(b => b.IsPublish == true)).FirstOrDefaultAsync(c => c.Id == id);
+            var category = await _context.Categories.Include(c => c.Blogs!.Where(b => b.IsPublish == true)).FirstOrDefaultAsync(c => c.Id == id);
             if (category == null)
             {
                 return NotFound();

@@ -64,7 +64,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                     <h5 class="m-0 fw-normal">فروش امروز</h5>
-                    <h3 class="m-0 text-primary">@Model.TodaySell.Value.ToString("N0") تومان</h3>
+                    <h3 class="m-0 text-primary">@Model?.TodaySell!.Value.ToString("N0") تومان</h3>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                     <h5 class="m-0 fw-normal">کل نظرات</h5>
-                    <h3 class="m-0 text-primary">@Model.AllComment</h3>
+                    <h3 class="m-0 text-primary">@Model?.AllComment</h3>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                     <h5 class="m-0 fw-normal">نظرات تایید نشده</h5>
-                    <h3 class="m-0 text-danger">@Model.UnConfirmComment</h3>
+                    <h3 class="m-0 text-danger">@Model?.UnConfirmComment</h3>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                     <h5 class="m-0 fw-normal">نظرات تایید شده</h5>
-                    <h3 class="m-0 text-primary">@Model.ConfirmComment</h3>
+                    <h3 class="m-0 text-primary">@Model?.ConfirmComment</h3>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                     <h5 class="m-0 fw-normal">کل کاربران</h5>
-                    <h3 class="m-0 text-primary">@Model.AllUser</h3>
+                    <h3 class="m-0 text-primary">@Model?.AllUser</h3>
                 </div>
             </div>
         </div>
@@ -144,12 +144,12 @@
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>@Model.MostViewBlog.Title</td>
-                    <td>@Model.MostViewBlog.ShortDescription</td>
-                    <td>@Model.MostViewBlog.CreateDate.Value.ToShamsi()</td>
-                    <td>@(Model.MostViewBlog.User?.FirstName+" "+ Model.MostViewBlog.User?.LastName)</td>
-                    <td>@Model.MostViewBlog.View</td>
-                    <td>@Model.MostViewBlog.Category.Name</td>
+                    <td>@Model?.MostViewBlog?.Title</td>
+                    <td>@Model?.MostViewBlog?.ShortDescription</td>
+                    <td>@Model?.MostViewBlog?.CreateDate!.Value.ToShamsi()</td>
+                    <td>@(Model?.MostViewBlog?.User?.FirstName+" "+ Model?.MostViewBlog?.User?.LastName)</td>
+                    <td>@Model?.MostViewBlog?.View</td>
+                    <td>@Model?.MostViewBlog?.Category?.Name</td>
                 </tr>
             </tbody>
         </table>
@@ -174,13 +174,13 @@
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>@Model.MostExpensiveBlog.Title</td>
-                    <td>@Model.MostExpensiveBlog.ShortDescription</td>
-                    <td>@Model.MostExpensiveBlog.CreateDate.Value.ToShamsi()</td>
-                    <td>@(Model.MostExpensiveBlog.User?.FirstName+" "+ Model.MostExpensiveBlog.User?.LastName)</td>
-                    <td>@Model.MostExpensiveBlog.View</td>
-                    <td>@Model.MostExpensiveBlog.Category.Name</td>
-                    <td>@Model.MostExpensiveBlog.Price?.ToString("N0")</td>
+                    <td>@Model?.MostExpensiveBlog?.Title</td>
+                    <td>@Model?.MostExpensiveBlog?.ShortDescription</td>
+                    <td>@Model?.MostExpensiveBlog?.CreateDate!.Value.ToShamsi()</td>
+                    <td>@(Model?.MostExpensiveBlog?.User?.FirstName+" "+ Model?.MostExpensiveBlog?.User?.LastName)</td>
+                    <td>@Model?.MostExpensiveBlog?.View</td>
+                    <td>@Model?.MostExpensiveBlog?.Category?.Name</td>
+                    <td>@Model?.MostExpensiveBlog?.Price?.ToString("N0")</td>
                 </tr>
             </tbody>
         </table>
@@ -205,13 +205,13 @@
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>@Model.CheapestBlog.Title</td>
-                    <td>@Model.CheapestBlog.ShortDescription</td>
-                    <td>@Model.CheapestBlog.CreateDate.Value.ToShamsi()</td>
-                    <td>@(Model.CheapestBlog.User?.FirstName+" "+ Model.CheapestBlog.User?.LastName)</td>
-                    <td>@Model.CheapestBlog.View</td>
-                    <td>@Model.CheapestBlog.Category.Name</td>
-                    <td>@Model.CheapestBlog.Price?.ToString("N0")</td>
+                    <td>@Model?.CheapestBlog?.Title</td>
+                    <td>@Model?.CheapestBlog?.ShortDescription</td>
+                    <td>@Model?.CheapestBlog?.CreateDate!.Value.ToShamsi()</td>
+                    <td>@(Model?.CheapestBlog?.User?.FirstName+" "+ Model?.CheapestBlog?.User?.LastName)</td>
+                    <td>@Model?.CheapestBlog?.View</td>
+                    <td>@Model?.CheapestBlog?.Category?.Name</td>
+                    <td>@Model?.CheapestBlog?.Price?.ToString("N0")</td>
                 </tr>
             </tbody>
         </table>

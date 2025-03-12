@@ -17,8 +17,8 @@ namespace PowerBlog.Site.Controllers
         [IsLoggedIn]
         public async Task<IActionResult> Index()
         {
-            var userId = long.Parse(HttpContext.Session.GetString("UserId"));
-            var orders = await _context.Orders.Include(o => o.Blog).ThenInclude(b => b.Category).Include(o => o.Blog).ThenInclude(b => b.User).Where(o => o.UserId == userId && o.PaymentStatus == PaymentStatus.Pending).ToListAsync();
+            var userId = long.Parse(HttpContext.Session.GetString("UserId")!);
+            var orders = await _context.Orders.Include(o => o.Blog).ThenInclude(b => b!.Category).Include(o => o.Blog).ThenInclude(b => b!.User).Where(o => o.UserId == userId && o.PaymentStatus == PaymentStatus.Pending).ToListAsync();
             return View(orders);
         }
         [HttpPost]
@@ -79,7 +79,7 @@ namespace PowerBlog.Site.Controllers
                 TempData["ErrorMessage"] = "پرداخت ناموفق بود.";
                 return RedirectToAction("Index", "Order");
             }
-            var userId = long.Parse(HttpContext.Session.GetString("UserId"));
+            var userId = long.Parse(HttpContext.Session.GetString("UserId")!);
             var orders = await _context.Orders.Where(o => o.PaymentStatus == PaymentStatus.Pending && o.UserId == userId).ToListAsync();
             foreach (var order in orders)
             {
@@ -88,7 +88,7 @@ namespace PowerBlog.Site.Controllers
                 order.PayDate = DateTime.Now;
                 if (TempData["OfferWord"] != null)
                 {
-                    order.OfferPayId = long.Parse(TempData["OfferWord"].ToString());
+                    order.OfferPayId = long.Parse(TempData["OfferWord"]?.ToString()!);
                     TempData.Keep("OfferWord");
                 }
             }

@@ -24,7 +24,7 @@ namespace PowerBlog.Site.Controllers
             {
                 return NotFound();
             }
-            var blog = await _context.Blogs.Include(b => b.Comments.Where(c => c.IsConfirmation == true)).ThenInclude(c => c.User).Include(b => b.Comments.Where(c => c.IsConfirmation == true)).ThenInclude(c => c.ReactionBlogs).Include(b => b.User).Include(b => b.ReactionBlogs).FirstOrDefaultAsync(b => b.Id == id && b.IsPublish == true && b.Price != null);
+            var blog = await _context.Blogs.Include(b => b.Comments!.Where(c => c.IsConfirmation == true)).ThenInclude(c => c.User).Include(b => b.Comments!.Where(c => c.IsConfirmation == true)).ThenInclude(c => c.ReactionBlogs).Include(b => b.User).Include(b => b.ReactionBlogs).FirstOrDefaultAsync(b => b.Id == id && b.IsPublish == true && b.Price != null);
             if (blog == null)
             {
                 return NotFound();

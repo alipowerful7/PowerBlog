@@ -45,12 +45,12 @@ else
                 {
                     <tr class="justify-center bg-white border-b dark:bg-zinc-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-zinc-600">
                         <td class="px-6 py-5">@counter</td>
-                        <th scope="row" class="px-6 py-5 font-medium text-gray-900 whitespace-nowrap dark:text-white">@item.Blog.Title</th>
-                        <td class="px-6 py-5">@item.Blog.Category.Name</td>
-                        <td class="px-6 py-5">@(item.Blog.User?.FirstName+" "+item.Blog.User?.LastName)</td>
-                        <td class="px-6 py-5">@item.Blog.Price?.ToString("N0") تومان</td>
+                        <th scope="row" class="px-6 py-5 font-medium text-gray-900 whitespace-nowrap dark:text-white">@item?.Blog?.Title</th>
+                        <td class="px-6 py-5">@item?.Blog?.Category?.Name</td>
+                        <td class="px-6 py-5">@(item?.Blog?.User?.FirstName+" "+item?.Blog?.User?.LastName)</td>
+                        <td class="px-6 py-5">@item?.Blog?.Price?.ToString("N0") تومان</td>
                         <td class="px-6 py-5 text-red-500">
-                            <form asp-action="PostDeleteOrder" asp-controller="Order" asp-area="" asp-route-orderId="@item.Id" method="post">
+                            <form asp-action="PostDeleteOrder" asp-controller="Order" asp-area="" asp-route-orderId="@item?.Id" method="post">
                                 <button class="w-full flex items-center gap-x-1 justify-center bg-red-500 text-white hover:bg-red-600 transition-all rounded-lg shadow py-2">حذف</button>
                             </form>
                         </td>

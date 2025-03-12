@@ -21,7 +21,7 @@ namespace PowerBlog.Site.Controllers
             if (user == null)
             {
                 TempData["ErrorMessage"] = "برای ارسال نظر ابتدا وارد حساب کاربری خود شوید";
-                if (blog.Price != null)
+                if (blog?.Price != null)
                 {
                     return RedirectToAction("Details", "PriceBlog", new { id = comment.BlogId });
                 }
@@ -31,7 +31,7 @@ namespace PowerBlog.Site.Controllers
             comment.UserId = long.Parse(user);
             await _context.Comments.AddAsync(comment);
             await _context.SaveChangesAsync();
-            if (blog.Price != null)
+            if (blog?.Price != null)
             {
                 return RedirectToAction("Details", "PriceBlog", new { id = comment.BlogId });
             }

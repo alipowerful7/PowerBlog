@@ -6,7 +6,7 @@
 @inject PowerBlog.Site.Data.ApplicationDbContext dbContext
 @{
     var session = Context.Session;
-    var userId = (session?.GetString("UserId") != null) ? long.Parse(session.GetString("UserId")) : 0;
+    var userId = (session?.GetString("UserId") != null) ? long.Parse(session.GetString("UserId")!) : 0;
 }
 @section Styles{
     <link rel="stylesheet" href="~/AdminTemplate/assets/fonts/bootstrap/bootstrap-icons.min.css" />
@@ -55,7 +55,7 @@
                                     افزودن به علاقمندی
                                 </div>
                             </div>*@
-                        @if ((bool)TempData["IsUserAddToFavoritePrice"] == true)
+                        @if ((bool)TempData?["IsUserAddToFavoritePrice"]! == true)
                         {
                             <a asp-action="RemoveFromFavorite" asp-controller="Blog" asp-area="" asp-route-favoriteId="@TempData["FavoriteId"]" class="flex items-center gap-x-1 text-gray-400">
                                 <i class="bi bi-heart-fill"></i>
@@ -65,7 +65,7 @@
                         }
                         else
                         {
-                            <a asp-action="AddToFavorite" asp-controller="Blog" asp-area="" asp-route-blogId="@Model.Blog.Id" class="flex items-center gap-x-1 text-gray-400">
+                            <a asp-action="AddToFavorite" asp-controller="Blog" asp-area="" asp-route-blogId="@Model?.Blog?.Id" class="flex items-center gap-x-1 text-gray-400">
                                 <i class="bi bi-heart"></i>
                                 <p>افزودن به علاقه مندی ها</p>
                             </a>
@@ -125,16 +125,16 @@
                                           aria-live="assertive"
                                           aria-atomic="true"></span>
                                 </div>*@
-                    <img src="~/Images/BlogImages/@Model.Blog.Photo" alt="e" class="group-hover:scale-105 duration-300 w-32 h-32 lg:w-48 lg:h-48 mx-auto mb-3">
+                    <img src="~/Images/BlogImages/@Model?.Blog?.Photo" alt="e" class="group-hover:scale-105 duration-300 w-32 h-32 lg:w-48 lg:h-48 mx-auto mb-3">
                 </div>
                 <div class="flex flex-col gap-y-4 w-full">
                     <div class="flex items-start justify-between border-b border-b-gray-200 py-2">
                         <div class="flex flex-col gap-y-1">
                             @*<p class="text-sm text-gray-400">ESPRESSO BEANS GIORNO</p>*@
-                            <h3 class="text-2xl font-MorabbaMedium">@Model.Blog.Title</h3>
+                            <h3 class="text-2xl font-MorabbaMedium">@Model?.Blog?.Title</h3>
                         </div>
                         <div class="flex gap-x-1">
-                            <p class="font-DanaMedium mt-0.5">@Model.Blog.CreateDate.Value.ToShamsi()</p>
+                            <p class="font-DanaMedium mt-0.5">@Model?.Blog?.CreateDate!.Value.ToShamsi()</p>
                             <svg class="w-5 h-5 text-yellow-400">
                                 <use href="#calender"></use>
                             </svg>
@@ -142,12 +142,12 @@
                     </div>
                     <div class="flex gap-x-1 text-gray-400">
                         <svg class="w-5 h-5"><use href="#list-bullet"></use></svg>
-                        <p>دسته‌بندی : @Model.Blog.Category.Name</p>
+                        <p>دسته‌بندی : @Model?.Blog?.Category?.Name</p>
                     </div>
                     <p class="mt-2 font-DanaMedium">ویژگی های محصول :</p>
                     <div class="grid grid-cols-12 gap-4 child:col-span-12 xl:child:col-span-6 child:dark:bg-zinc-800 child:bg-gray-100 child:h-12 child:rounded-lg child:text-sm child:flex child:items-center child:justify-center">
                         <div>
-                            <p class="text-zinc-600 dark:text-gray-400">تعداد کلمات: @Model.Blog.TextBody.Count().ToString("N0")</p>
+                            <p class="text-zinc-600 dark:text-gray-400">تعداد کلمات: @Model?.Blog?.TextBody?.Count().ToString("N0")</p>
                         </div>
                         @*<div>
                                 <p class="text-zinc-600 dark:text-gray-400">
@@ -190,7 +190,7 @@
             </div>
             <div class="lg:mr-2">
                 <h2 class="font-MorabbaMedium text-2xl pb-1 mb-2">معرفی محصول</h2>
-                <p class="leading-10 text-gray-600 dark:text-gray-300">@Model.Blog.ShortDescription</p>
+                <p class="leading-10 text-gray-600 dark:text-gray-300">@Model?.Blog?.ShortDescription</p>
             </div>
         </div>
         <div class="w-full lg:w-1/4 lg:sticky top-5 flex flex-col gap-y-6">
@@ -200,7 +200,7 @@
                 TempData.Remove("ErrorMessageAddToOrder");
             }
             <div class="flex items-center gap-x-1">
-                <p class="text-2xl font-DanaDemiBold">@Model.Blog.Price?.ToString("N0")</p>
+                <p class="text-2xl font-DanaDemiBold">@Model?.Blog?.Price?.ToString("N0")</p>
                 <p class="">تومان</p>
             </div>
             <button class="w-full flex items-center justify-between gap-x-1 rounded-lg border border-gray-200 dark:border-white/20 py-2 px-3">
@@ -224,17 +224,17 @@
                 </button>*@
             @if ((bool?)TempData["IsPaid"] == true)
             {
-                <a asp-action="Details" asp-controller="Blog" asp-area="" asp-route-id="@Model.Blog.Id" class="w-full flex items-center gap-x-1 justify-center bg-sky-500 text-white hover:bg-sky-600 transition-all rounded-lg shadow py-2">
+                <a asp-action="Details" asp-controller="Blog" asp-area="" asp-route-id="@Model?.Blog?.Id" class="w-full flex items-center gap-x-1 justify-center bg-sky-500 text-white hover:bg-sky-600 transition-all rounded-lg shadow py-2">
                     رفتن به صفحه مقاله
                 </a>
                 TempData.Remove("IsPaid");
             }
             else
             {
-                @if ((bool)TempData["IsUserAddToOrderPrice"] == false)
+                @if ((bool)TempData?["IsUserAddToOrderPrice"]! == false)
                 {
                     <form asp-action="PostAddNewOrder" asp-controller="Order" asp-area="" asp-route-blogId="@Model.Blog.Id" method="post">
-                        <input type="hidden" asp-for="@Model.Order.BlogId" value="@Model.Blog.Id" />
+                        <input type="hidden" asp-for="@Model!.Order!.BlogId" value="@Model?.Blog?.Id" />
                         <button class="w-full flex items-center gap-x-1 justify-center bg-green-500 text-white hover:bg-green-600 transition-all rounded-lg shadow py-2">
                             افزودن به سبد خرید
                             <svg class="w-5 h-5"><use href="#shopping-bag"></use></svg>
@@ -264,7 +264,7 @@
     <section class="w-full rounded-lg bg-white dark:bg-zinc-700 shadow p-5">
         <div class="flex items-center gap-x-2 mb-6">
             <h2 class="font-MorabbaMedium text-2xl">دیدگاه ها</h2>
-            <p class="text-sm text-blue-500">(@Model.Blog.Comments.Count() دیدگاه)</p>
+            <p class="text-sm text-blue-500">(@Model?.Blog?.Comments?.Count() دیدگاه)</p>
         </div>
         <div class="flex flex-col lg:flex-row items-start gap-10">
             <div class="lg:w-1/4 flex flex-col w-full">
@@ -275,7 +275,7 @@
                         TempData.Remove("ErrorMessage");
                     }
                     <p class="font-DanaMedium text-lg mb-2">ثبت دیدگاه</p>
-                    <input required type="text" asp-for="@Model.Comment.Title" placeholder="عنوان" class="tailwind-input" />
+                    <input required type="text" asp-for="@Model!.Comment!.Title" placeholder="عنوان" class="tailwind-input" />
                     @*<p class="text-gray-500 dark:text-white text-sm mb-4">
                             این محصول را به دیگران پیشنهاد :
                         </p>
@@ -287,15 +287,15 @@
                                 <svg class="w-5 h-5"><use href="#hand-down"></use></svg> نمیکنم
                             </button>
                         </div>*@
-                    <textarea required asp-for="@Model.Comment.TextBody" class="h-24 tailwind-input" placeholder="متن دیدگاه"></textarea>
-                    <input type="hidden" asp-for="@Model.Comment.BlogId" value="@Model.Blog.Id" />
+                    <textarea required asp-for="@Model!.Comment!.TextBody" class="h-24 tailwind-input" placeholder="متن دیدگاه"></textarea>
+                    <input type="hidden" asp-for="@Model!.Comment!.BlogId" value="@Model?.Blog?.Id" />
                     <button type="submit" class="rounded-lg p-2 bg-green-500 hover:bg-green-600 text-white transition-all">
                         ثبت
                     </button>
                 </form>
             </div>
             <ul class="lg:w-3/4 flex flex-col gap-y-2 child:w-full">
-                @foreach (var item in Model.Blog.Comments)
+                @foreach (var item in Model?.Blog?.Comments!)
                 {
                     <li class="child:flex py-4 border-b border-gray-200 child:border-white/20">
                         <div class="flex items-center gap-x-2">
@@ -310,46 +310,46 @@
                         </div>
                         <div class="mt-2 lg:mt-0 flex-col lg:flex-row gap-y-2 lg:items-center justify-between">
                             <div class="flex items-center gap-x-4 text-gray-400 text-sm">
-                                <p>@item.CreateDate.Value.ToShamsi()</p>
-                                <p>@(item.User.FirstName+" "+item.User.LastName)</p>
+                                <p>@item?.CreateDate!.Value.ToShamsi()</p>
+                                <p>@(item?.User?.FirstName+" "+item?.User?.LastName)</p>
                             </div>
                             <div class="flex items-center gap-x-2 flex-wrap mt-2">
                                 <p class="text-gray-400 text-sm">
                                     آیا این دیدگاه برایتان مفید بود؟
                                 </p>
                                 @{
-                                    var likes = item.ReactionBlogs?.Count(r => r.LikeOrDisLike == LikeOrDisLike.Like) ?? 0;
-                                    var dislikes = item.ReactionBlogs?.Count(r => r.LikeOrDisLike == LikeOrDisLike.DisLike) ?? 0;
+                                    var likes = item?.ReactionBlogs?.Count(r => r.LikeOrDisLike == LikeOrDisLike.Like) ?? 0;
+                                    var dislikes = item?.ReactionBlogs?.Count(r => r.LikeOrDisLike == LikeOrDisLike.DisLike) ?? 0;
                                 }
 
                                 <div class="flex items-center gap-x-2 child:flex child:items-center child:gap-x-1 child:rounded-lg child:p-2 child:font-DanaMedium child:duration-300 child:transition-all child:text-sm">
-                                    @if (item.ReactionBlogs.FirstOrDefault(r => r.UserId == userId && r.BlogId == Model.Blog.Id && r.CommentId == item.Id) != null)
+                                    @if (item?.ReactionBlogs?.FirstOrDefault(r => r.UserId == userId && r.BlogId == Model.Blog.Id && r.CommentId == item.Id) != null)
                                     {
-                                        if (item.ReactionBlogs.FirstOrDefault(r => r.UserId == userId && r.BlogId == Model.Blog.Id && r.CommentId == item.Id).LikeOrDisLike == LikeOrDisLike.Like)
+                                        if (item?.ReactionBlogs?.FirstOrDefault(r => r?.UserId == userId && r?.BlogId == Model?.Blog?.Id && r?.CommentId == item?.Id).LikeOrDisLike == LikeOrDisLike.Like)
                                         {
-                                            <a asp-action="RemoveReaction" asp-controller="ReactionBlog" asp-area="" asp-route-reactionId="@item.ReactionBlogs.FirstOrDefault(r => r.UserId == userId && r.BlogId == Model.Blog.Id && r.CommentId == item.Id).Id" class="text-green-600 ring-transparent ring-1 focus:ring-green-600 dark:focus:ring-green-600">
+                                            <a asp-action="RemoveReaction" asp-controller="ReactionBlog" asp-area="" asp-route-reactionId="@item?.ReactionBlogs?.FirstOrDefault(r => r?.UserId == userId && r?.BlogId == Model?.Blog?.Id && r?.CommentId == item?.Id).Id" class="text-green-600 ring-transparent ring-1 focus:ring-green-600 dark:focus:ring-green-600">
                                                 @likes <i class="bi bi-check-square-fill"></i>
                                             </a>
-                                            <a asp-action="DisLikeComment" asp-controller="ReactionBlog" asp-area="" asp-route-blogId="@Model.Blog.Id" asp-route-commentId="@item.Id" class="text-red-500 ring-transparent ring-1 focus:ring-[#EF4343] dark:focus:ring-[#EF4343]">
+                                            <a asp-action="DisLikeComment" asp-controller="ReactionBlog" asp-area="" asp-route-blogId="@Model.Blog.Id" asp-route-commentId="@item?.Id" class="text-red-500 ring-transparent ring-1 focus:ring-[#EF4343] dark:focus:ring-[#EF4343]">
                                                 @dislikes <i class="bi bi-x-square"></i>
                                             </a>
                                         }
                                         else
                                         {
-                                            <a asp-action="LikeComment" asp-controller="ReactionBlog" asp-area="" asp-route-blogId="@Model.Blog.Id" asp-route-commentId="@item.Id" class="text-green-600 ring-transparent ring-1 focus:ring-green-600 dark:focus:ring-green-600">
+                                            <a asp-action="LikeComment" asp-controller="ReactionBlog" asp-area="" asp-route-blogId="@Model.Blog.Id" asp-route-commentId="@item?.Id" class="text-green-600 ring-transparent ring-1 focus:ring-green-600 dark:focus:ring-green-600">
                                                 @likes <i class="bi bi-check-square"></i>
                                             </a>
-                                            <a asp-action="RemoveReaction" asp-controller="ReactionBlog" asp-area="" asp-route-reactionId="@item.ReactionBlogs.FirstOrDefault(r => r.UserId == userId && r.BlogId == Model.Blog.Id && r.CommentId == item.Id).Id" class="text-red-500 ring-transparent ring-1 focus:ring-[#EF4343] dark:focus:ring-[#EF4343]">
+                                            <a asp-action="RemoveReaction" asp-controller="ReactionBlog" asp-area="" asp-route-reactionId="@item?.ReactionBlogs?.FirstOrDefault(r => r?.UserId == userId && r?.BlogId == Model?.Blog?.Id && r?.CommentId == item?.Id).Id" class="text-red-500 ring-transparent ring-1 focus:ring-[#EF4343] dark:focus:ring-[#EF4343]">
                                                 @dislikes <i class="bi bi-x-square-fill"></i>
                                             </a>
                                         }
                                     }
                                     else
                                     {
-                                        <a asp-action="LikeComment" asp-controller="ReactionBlog" asp-area="" asp-route-blogId="@Model.Blog.Id" asp-route-commentId="@item.Id" class="text-green-600 ring-transparent ring-1 focus:ring-green-600 dark:focus:ring-green-600">
+                                        <a asp-action="LikeComment" asp-controller="ReactionBlog" asp-area="" asp-route-blogId="@Model.Blog.Id" asp-route-commentId="@item?.Id" class="text-green-600 ring-transparent ring-1 focus:ring-green-600 dark:focus:ring-green-600">
                                             @likes <i class="bi bi-check-square"></i>
                                         </a>
-                                        <a asp-action="DisLikeComment" asp-controller="ReactionBlog" asp-area="" asp-route-blogId="@Model.Blog.Id" asp-route-commentId="@item.Id" class="text-red-500 ring-transparent ring-1 focus:ring-[#EF4343] dark:focus:ring-[#EF4343]">
+                                        <a asp-action="DisLikeComment" asp-controller="ReactionBlog" asp-area="" asp-route-blogId="@Model.Blog.Id" asp-route-commentId="@item?.Id" class="text-red-500 ring-transparent ring-1 focus:ring-[#EF4343] dark:focus:ring-[#EF4343]">
                                             @dislikes <i class="bi bi-x-square"></i>
                                         </a>
                                     }
@@ -798,7 +798,7 @@
                          aria-label="2 / 6"
                          data-swiper-slide-index="1"
                          style="width: 255.6px; margin-left: 20px">
-                        <a asp-action="Details" asp-controller="Blog" asp-area="" asp-route-id="@item.Id">
+                        <a asp-action="Details" asp-controller="Blog" asp-area="" asp-route-id="@item?.Id">
 
                             <img src="~/Images/BlogImages/@item.Photo"
                                  alt="@item.Title"
@@ -806,7 +806,7 @@
                             <div class="px-2 lg:px-4 mb-3">
                                 <a asp-action="Details" asp-controller="Blog" asp-area="" asp-route-id="@item.Id" class="line-clamp-2 font-DanaMedium mb-2 text-sm lg:text-base">@item.Title</a>
                                 <div class="flex items-center gap-x-1 lg:gap-x-3">
-                                    <p class="font-Dana text-red-400">@item.CreateDate.Value.ToShamsi()</p>
+                                    <p class="font-Dana text-red-400">@item?.CreateDate!.Value.ToShamsi()</p>
                                 </div>
                             </div>
                             @*<div class="flex items-center justify-between px-2 lg:px-4 mb-3">

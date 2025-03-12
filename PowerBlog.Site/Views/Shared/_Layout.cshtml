@@ -10,7 +10,7 @@
     decimal? userWallet = 0;
     if (isLoggedIn != null)
     {
-        var userId = long.Parse(session?.GetString("UserId"));
+        var userId = long.Parse(session?.GetString("UserId")!);
         var user = dbContext.Users.FirstOrDefault(u => u.Id == userId);
         if (user != null)
         {
@@ -22,7 +22,7 @@
 
     var priceBlogs = dbContext.Blogs.Where(b => b.Price != null).OrderByDescending(b => b.CreateDate).Take(4).ToList();
 
-    var sidebarOrder = dbContext.Orders.Include(o => o.Blog).Where(o => o.UserId == (session.GetString("UserId") == null ? 0 : long.Parse(session.GetString("UserId"))) && o.PaymentStatus == PaymentStatus.Pending).ToList();
+    var sidebarOrder = dbContext.Orders.Include(o => o.Blog).Where(o => o.UserId == (session!.GetString("UserId") == null ? 0 : long.Parse(session!.GetString("UserId")!)) && o.PaymentStatus == PaymentStatus.Pending).ToList();
 }
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
@@ -535,16 +535,16 @@
                 @foreach (var item in sidebarOrder)
                 {
                     <div class="flex items-center gap-x-3 border-b border-gray-200 pb-4 dark:border-white/10">
-                        <img src="~/Images/BlogImages/@item.Blog.Photo"
+                        <img src="~/Images/BlogImages/@item?.Blog?.Photo"
                              class="w-20 h-20 object-cover rounded-lg"
-                             alt="@item.Blog.Title" />
+                             alt="@item?.Blog?.Title" />
                         <div class="flex flex-col gap-y-1">
-                            <h2 class="font-DanaMedium line-clamp-2 text-sm">@item.Blog.Title</h2>
+                            <h2 class="font-DanaMedium line-clamp-2 text-sm">@item?.Blog?.Title</h2>
                             @*<p class="text-xs text-green-600 dark:text-green-500">
                                     14.500 تومان تخفیف
                                 </p>*@
                             <p class="font-DanaDemiBold text-sm">
-                                @item.Blog.Price?.ToString("N0") <span class="font-Dana">تومان</span>
+                                @item?.Blog?.Price?.ToString("N0") <span class="font-Dana">تومان</span>
                             </p>
                         </div>
                     </div>

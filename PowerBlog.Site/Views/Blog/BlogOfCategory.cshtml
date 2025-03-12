@@ -11,7 +11,7 @@
                 <a href="#">دسته بندی</a>
                 <svg class="w-4 h-4"><use href="#chevron-left"></use></svg>
             </li>
-            <li class="flex items-center gap-x-2"><a href="#">@Model.Category.Name</a></li>
+            <li class="flex items-center gap-x-2"><a href="#">@Model?.Category?.Name</a></li>
         </ul>
     </section>
     <div class="flex flex-col lg:flex-row gap-4">
@@ -97,7 +97,7 @@
                 </ul>
             </div>
             <div class="mt-4 grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8 child-hover:-translate-y-2 child:duration-300 child:bg-white child:dark:bg-zinc-700 child:rounded-lg child:p-2 child:cursor-pointer child:shadow">
-                @foreach (var item in Model.Blogs)
+                @foreach (var item in Model?.Blogs!)
                 {
                     <div class="group">
                         <div class="relative overflow-hidden rounded-lg">
@@ -122,9 +122,9 @@
                         <div class="flex items-center justify-between text-sm px-1">
                             <span class="flex items-center gap-x-1 text-gray-400">
                                 <svg class="w-4 h-4"><use href="#calendar"></use></svg>
-                                <p class="mt-1">@item.UpdateDate.Value.ToShamsi()</p>
+                                <p class="mt-1">@item?.UpdateDate!.Value.ToShamsi()</p>
                             </span><span class="flex items-start gap-x-1 text-gray-400">
-                                <p class="font-DanaDemiBold">120</p>
+                                <p class="font-DanaDemiBold">@item?.View</p>
                                 <svg class="w-4 h-4">
                                     <use href="#eye"></use>
                                 </svg>

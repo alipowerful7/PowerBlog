@@ -112,7 +112,7 @@ namespace PowerBlog.Site.Controllers
         public async Task<IActionResult> Favorites()
         {
             var userId = long.Parse(HttpContext.Session.GetString("UserId")!);
-            var favorites = await _context.Favorites.Include(f => f.Blog).ThenInclude(b => b.User).Include(f => f.Blog).ThenInclude(b => b.Category).Where(f => f.UserId == userId).Select(f => f.Blog).ToListAsync();
+            var favorites = await _context.Favorites.Include(f => f.Blog).ThenInclude(b => b!.User).Include(f => f.Blog).ThenInclude(b => b!.Category).Where(f => f.UserId == userId).Select(f => f.Blog).ToListAsync();
             return View(favorites);
         }
     }

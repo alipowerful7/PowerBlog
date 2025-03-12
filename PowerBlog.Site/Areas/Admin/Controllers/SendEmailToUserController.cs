@@ -34,7 +34,7 @@ namespace PowerBlog.Site.Areas.Admin.Controllers
             var count = 0;
             foreach (var user in users)
             {
-                var result = await sendEmailToUser.SendEmail(user.Email, subject, message);
+                var result = await sendEmailToUser.SendEmail(user.Email!, subject, message);
                 if (result)
                 {
                     count += 1;

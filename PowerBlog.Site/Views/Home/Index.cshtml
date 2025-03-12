@@ -1009,10 +1009,10 @@
                     <div class="flex items-center justify-between text-sm px-1">
                         <span class="flex items-center gap-x-1 text-gray-400">
                             <svg class="w-4 h-4"><use href="#calendar"></use></svg>
-                            <p class="mt-1">@item.CreateDate.Value.ToShamsi()</p>
+                            <p class="mt-1">@item?.CreateDate!.Value.ToShamsi()</p>
                         </span>
                         <span class="flex items-start gap-x-1 text-gray-400">
-                            <p class="font-DanaDemiBold">@item.View.ToString("N0")</p>
+                            <p class="font-DanaDemiBold">@item?.View.ToString("N0")</p>
                             <svg class="w-4 h-4">
                                 <use href="#eye"></use>
                             </svg>

@@ -23,10 +23,10 @@
                     <tr>
                         <td>@counter</td>
                         <td>@item.Title</td>
-                        <td>@(item.User.FirstName+" "+item.User.LastName)</td>
-                        <td>@item.Blog.Title</td>
-                        <td>@item.CreateDate.Value.ToShamsi()</td>
-                        <td>@(item.IsConfirmation?"تایید شده":"تایید نشده")</td>
+                        <td>@(item?.User?.FirstName+" "+item?.User?.LastName)</td>
+                        <td>@item?.Blog?.Title</td>
+                        <td>@item?.CreateDate!.Value.ToShamsi()</td>
+                        <td>@(item!.IsConfirmation?"تایید شده":"تایید نشده")</td>
                         <td>
                             <a asp-action="Details" asp-controller="Comment" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-info">جزئیات</a> <a asp-action="Delete" asp-controller="Comment" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-danger">حذف</a>
                             @if (item.IsConfirmation == false)
